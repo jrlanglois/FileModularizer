@@ -121,7 +121,7 @@ void Modularizer::saveTo (const juce::File& destinationFolder,
                                                  .replaceSection (0, sourceFolderToRemove.length(), juce::String::empty);
 
                     data << "#ifndef " << guard << "\r\n";
-                    data << "    #include " << fileShort << "\r\n";
+                    data << "    #include \"" << fileShort << "\"\r\n";
                     data << "#endif " << guard << "\r\n";
                     data << "\r\n";
                 }
@@ -130,7 +130,7 @@ void Modularizer::saveTo (const juce::File& destinationFolder,
             data << "#endif //" << headerGuard;
 
             juce::ScopedPointer<juce::FileOutputStream> stream = moduleHeader.createOutputStream();
-            stream->writeString (data);
+            stream->writeText (data, false, false);
         }
 
         juce::File moduleCPP (destinationFolder.getFullPathName() + "/" + moduleName + ".cpp");
@@ -141,9 +141,25 @@ void Modularizer::saveTo (const juce::File& destinationFolder,
             juce::String data;
 
             data << "#include \"" << moduleName << ".h\"" << "\r\n";
+            data << "\r\n";
+
+            for (int i = 0; i < files.size(); ++i)
+            {
+                juce::File file (files[i]);
+
+                if (file.hasFileExtension (".c;.cpp;.hpp"))
+                {
+                    juce::String fileShort = file.getFullPathName()
+                                                 .replaceCharacters ("\\", "/")
+                                                 .replaceSection (0, sourceFolderToRemove.length(), juce::String::empty);
+
+                    data << "#include \"" << fileShort << "\"";
+                    data << "\r\n";
+                }
+            }
 
             juce::ScopedPointer<juce::FileOutputStream> stream = moduleCPP.createOutputStream();
-            stream->writeString (data);
+            stream->writeText (data, false, false);
         }
     }
 }

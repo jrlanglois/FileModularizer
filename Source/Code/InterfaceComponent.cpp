@@ -214,7 +214,7 @@ void InterfaceComponent::paintListBoxItem (const int rowNumber,
     const float thickness = 0.25f;
 
     g.setColour (juce::Colours::lightgrey);
-    g.drawLine (offset, height - thickness,
-                w - (offset * 2.0f), height - thickness,
+    g.drawLine (offset, h - thickness,
+                w - (offset * 2.0f), h - thickness,
                 thickness);
 }
