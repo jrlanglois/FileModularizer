@@ -89,13 +89,13 @@ void Modularizer::saveTo (const juce::File& destinationFolder,
         moduleHeader.create();
 
         { //Write the header file contents:
-            juce::ScopedPointer<juce::FileOutputStream> stream = moduleHeader.createOutputStream();
+            juce::String data;
 
-            stream->writeString ("#ifndef " + headerGuard + "\r\n");
-            stream->writeString ("#define " + headerGuard + "\r\n");
-            stream->writeString ("\r\n");
-            stream->writeString ("\r\n");
-            stream->writeString ("\r\n");
+            data << "#ifndef " << headerGuard << "\r\n";
+            data << "#define " << headerGuard << "\r\n";
+            data << "\r\n";
+            data << "\r\n";
+            data << "\r\n";
 
             for (int i = 0; i < files.size(); ++i)
             {
@@ -110,23 +110,27 @@ void Modularizer::saveTo (const juce::File& destinationFolder,
                     const int startIndex = code.indexOf ("#ifndef ") + 8;
                     const int endIndex = startIndex + code.substring (startIndex).indexOf ("\n");
 
-                    juce::String guard (code.substring (startIndex, endIndex));
-                    guard.trim();
-                    guard.removeCharacters ("\n");
-                    guard.removeCharacters ("\r");
+                    juce::String guard = code.substring (startIndex, endIndex)
+                                             .trim()
+                                             .removeCharacters ("\r\n")
+                                             .removeCharacters ("\n")
+                                             .removeCharacters ("\r");
 
                     juce::String fileShort = file.getFullPathName()
-                                             .replaceCharacters ("\\", "/")
-                                             .replaceSection (0, sourceFolderToRemove.length(), juce::String::empty);
+                                                 .replaceCharacters ("\\", "/")
+                                                 .replaceSection (0, sourceFolderToRemove.length(), juce::String::empty);
 
-                    stream->writeString ("#ifndef " + guard + "\r\n");
-                    stream->writeString ("    #include " + fileShort + "\r\n");
-                    stream->writeString ("#endif " + guard + "\r\n");
-                    stream->writeString ("\r\n");
+                    data << "#ifndef " << guard << "\r\n";
+                    data << "    #include " << fileShort << "\r\n";
+                    data << "#endif " << guard << "\r\n";
+                    data << "\r\n";
                 }
             }
 
-            stream->writeString ("#endif //" + headerGuard);
+            data << "#endif //" << headerGuard;
+
+            juce::ScopedPointer<juce::FileOutputStream> stream = moduleHeader.createOutputStream();
+            stream->writeString (data);
         }
 
         juce::File moduleCPP (destinationFolder.getFullPathName() + "/" + moduleName + ".cpp");
@@ -134,9 +138,12 @@ void Modularizer::saveTo (const juce::File& destinationFolder,
         moduleCPP.create();
 
         { //Write the CPP file contents:
-            juce::ScopedPointer<juce::FileOutputStream> stream = moduleCPP.createOutputStream();
+            juce::String data;
 
-            stream->writeString ("#include \"" + moduleName + ".h\"" + "\r\n");
+            data << "#include \"" << moduleName << ".h\"" << "\r\n";
+
+            juce::ScopedPointer<juce::FileOutputStream> stream = moduleCPP.createOutputStream();
+            stream->writeString (data);
         }
     }
 }
