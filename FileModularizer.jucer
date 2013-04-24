@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="MTyUcZ" name="FileModularizer" projectType="guiapp" version="1.0.0"
+              bundleIdentifier="com.jrlanglois.FileModularizer" jucerVersion="3.1.0">
+  <MAINGROUP id="QhXoUH" name="FileModularizer">
+    <GROUP id="{C1DDB888-1E3C-435F-7E2E-B6A7D2E33C0A}" name="Code">
+      <FILE id="Ze3R1M" name="InterfaceComponent.cpp" compile="1" resource="0"
+            file="Source/Code/InterfaceComponent.cpp"/>
+      <FILE id="xwcfR3" name="InterfaceComponent.h" compile="0" resource="0"
+            file="Source/Code/InterfaceComponent.h"/>
+      <FILE id="vx2ofy" name="Modularizer.cpp" compile="1" resource="0" file="Source/Code/Modularizer.cpp"/>
+      <FILE id="WvNLUD" name="Modularizer.h" compile="0" resource="0" file="Source/Code/Modularizer.h"/>
+    </GROUP>
+    <GROUP id="{C3513A5E-CCAC-12BF-3BFC-D72DBF3D30FB}" name="Main">
+      <FILE id="cBt9vl" name="MainComponent.cpp" compile="1" resource="0"
+            file="Source/Main/MainComponent.cpp"/>
+      <FILE id="b1LI4l" name="MainComponent.h" compile="0" resource="0" file="Source/Main/MainComponent.h"/>
+      <FILE id="T0VnZK" name="Main.cpp" compile="1" resource="0" file="Source/Main/Main.cpp"/>
+    </GROUP>
+  </MAINGROUP>
+  <MODULES>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_audio" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_video" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="1"/>
+  </MODULES>
+  <EXPORTFORMATS>
+    <VS2012 targetFolder="Builds/VisualStudio2012" juceFolder="C:\Users\UUO\Documents\Work\juce\modules"
+            toolset="v110">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="1" optimisation="1" targetName="FileModularizer"/>
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="0" optimisation="2" targetName="FileModularizer"/>
+      </CONFIGURATIONS>
+    </VS2012>
+  </EXPORTFORMATS>
+  <JUCEOPTIONS/>
+</JUCERPROJECT>
