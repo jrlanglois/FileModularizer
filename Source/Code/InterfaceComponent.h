@@ -3,26 +3,31 @@
 
 #include "Modularizer.h"
 
-class InterfaceComponent : public Component,
-                           public Button::Listener,
-                           public ListBoxModel
+class InterfaceComponent : public juce::Component,
+                           public juce::ListBoxModel,
+                           public juce::Button::Listener
 {
 public:
     InterfaceComponent();
+
     ~InterfaceComponent();
 
     //==============================================================================
     /** @internal */
-    void paint (Graphics& g);
+    void paint (juce::Graphics& g);
     /** @internal */
     void resized();
     /** @internal */
-    void buttonClicked (Button* buttonThatWasClicked);
+    void deleteKeyPressed (int lastRowSelected);
+    /** @internal */
+    void backgroundClicked();
+    /** @internal */
+    void buttonClicked (juce::Button* buttonThatWasClicked);
     /** @internal */
     int getNumRows();
     /** @internal */
     void paintListBoxItem (int rowNumber,
-                           Graphics& g,
+                           juce::Graphics& g,
                            int width, int height,
                            bool rowIsSelected);
 

@@ -2,13 +2,14 @@
 
 InterfaceComponent::InterfaceComponent()
 {
-    addAndMakeVisible (grpClassConfiguration = new GroupComponent ("grpClassConfiguration", "Class Configuration"));
-    grpClassConfiguration->setColour (GroupComponent::ColourIds::textColourId, Colours::white);
+    addAndMakeVisible (grpClassConfiguration = new juce::GroupComponent ("grpClassConfiguration", "Class Configuration"));
+    grpClassConfiguration->setColour (juce::GroupComponent::ColourIds::textColourId, juce::Colours::white);
 
     addAndMakeVisible (fileListBox = new ListBox ("fileListBox", this));
     fileListBox->setColour (ListBox::outlineColourId, Colours::white.withAlpha (0.5f));
     fileListBox->setColour (ListBox::textColourId, Colours::white);
     fileListBox->setColour (ListBox::backgroundColourId, Colours::darkgrey.brighter().withAlpha (0.5f));
+    fileListBox->setMultipleSelectionEnabled (true);
 
     addAndMakeVisible (btnGenerate = new TextButton ("btnGenerate"));
     btnGenerate->setTooltip ("Generates a module at a specified folder");
@@ -106,9 +107,9 @@ InterfaceComponent::~InterfaceComponent()
 }
 
 //==============================================================================
-void InterfaceComponent::paint (Graphics& g)
+void InterfaceComponent::paint (juce::Graphics& g)
 {
-    g.fillAll (Colours::darkgrey);
+    g.fillAll (juce::Colours::darkgrey);
 }
 
 void InterfaceComponent::resized()
@@ -126,7 +127,30 @@ void InterfaceComponent::resized()
     txtDestinationFolder->setBounds (173, 553, 451, 24);
 }
 
-void InterfaceComponent::buttonClicked (Button* buttonThatWasClicked)
+void InterfaceComponent::deleteKeyPressed (const int /*lastRowSelected*/)
+{
+    juce::SparseSet<int> selectedRows (fileListBox->getSelectedRows());
+
+    for (int i = 0; i < selectedRows.size(); ++i)
+    {
+        int index = selectedRows[i];
+
+        if (i > 0)
+            index -= i;
+
+        files.remove (index);
+    }
+
+    fileListBox->setSelectedRows (juce::SparseSet<int>());
+    fileListBox->updateContent();
+}
+
+void InterfaceComponent::backgroundClicked()
+{
+    fileListBox->setSelectedRows (juce::SparseSet<int>());
+}
+
+void InterfaceComponent::buttonClicked (juce::Button* buttonThatWasClicked)
 {
     if (buttonThatWasClicked == btnGenerate)
     {
@@ -149,7 +173,8 @@ void InterfaceComponent::buttonClicked (Button* buttonThatWasClicked)
             Modularizer modularizer (folder, true);
             files = modularizer.getFiles();
 
-            resized();
+            fileListBox->setSelectedRows (juce::SparseSet<int>());
+            fileListBox->updateContent();
         }
     }
 }
@@ -160,16 +185,16 @@ int InterfaceComponent::getNumRows()
 }
 
 void InterfaceComponent::paintListBoxItem (const int rowNumber,
-                                           Graphics& g,
+                                           juce::Graphics& g,
                                            const int width, const int height,
                                            const bool isRowSelected)
 {
-    const juce::Colour textColour (fileListBox->findColour (ListBox::textColourId));
+    const juce::Colour textColour (fileListBox->findColour (juce::ListBox::textColourId));
 
     if (isRowSelected)
     {
-        g.setColour (textColour.darker().darker());
         g.fillAll (juce::Colours::white.darker());
+        g.setColour (juce::Colours::white.darker().contrasting());
     }
     else
     {
@@ -181,4 +206,14 @@ void InterfaceComponent::paintListBoxItem (const int rowNumber,
     g.drawText (files[rowNumber],
                 5, 0, width, height,
                 juce::Justification::centredLeft, false);
+
+    const float h = (float) height;
+    const float w = (float) width;
+    const float offset = 5.0f;
+    const float thickness = 0.25f;
+
+    g.setColour (juce::Colours::lightgrey);
+    g.drawLine (offset, height - thickness,
+                w - (offset * 2.0f), height - thickness,
+                thickness);
 }
