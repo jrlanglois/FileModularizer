@@ -16,7 +16,8 @@ public:
     //==============================================================================
     void copyAndfilterBadFiles (const juce::StringArray& files);
 
-    void saveTo (const juce::File& folder,
+    void saveTo (const juce::File& destinationFolder,
+                 const juce::String& sourceFolderToRemove,
                  const juce::String& moduleName,
                  const juce::String& headerGuard);
 

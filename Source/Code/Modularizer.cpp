@@ -74,14 +74,69 @@ void Modularizer::copyAndfilterBadFiles (const juce::StringArray& f)
     jassert (files.size() > 0);
 }
 
-void Modularizer::saveTo (const juce::File& folder,
+void Modularizer::saveTo (const juce::File& destinationFolder,
+                          const juce::String& sourceFolderToRemove,
                           const juce::String& moduleName,
                           const juce::String& headerGuard)
 {
     if (files.size() > 0
+        && sourceFolderToRemove.isNotEmpty()
         && moduleName.isNotEmpty()
         && headerGuard.isNotEmpty())
     {
-        const bool hasOldStyle = containsOldCStyleCodeFiles();
+        juce::File moduleHeader (destinationFolder.getFullPathName() + "/" + moduleName + ".h");
+        moduleHeader.deleteFile();
+        moduleHeader.create();
+
+        { //Write the header file contents:
+            juce::ScopedPointer<juce::FileOutputStream> stream = moduleHeader.createOutputStream();
+
+            stream->writeString ("#ifndef " + headerGuard + "\r\n");
+            stream->writeString ("#define " + headerGuard + "\r\n");
+            stream->writeString ("\r\n");
+            stream->writeString ("\r\n");
+            stream->writeString ("\r\n");
+
+            for (int i = 0; i < files.size(); ++i)
+            {
+                juce::File file (files[i]);
+
+                if (file.hasFileExtension (".h"))
+                {
+                    juce::ScopedPointer<juce::FileInputStream> guardFinder = file.createInputStream();
+                    jassert (guardFinder != nullptr);
+
+                    juce::String code = guardFinder->readString();
+                    const int startIndex = code.indexOf ("#ifndef ") + 8;
+                    const int endIndex = startIndex + code.substring (startIndex).indexOf ("\n");
+
+                    juce::String guard (code.substring (startIndex, endIndex));
+                    guard.trim();
+                    guard.removeCharacters ("\n");
+                    guard.removeCharacters ("\r");
+
+                    juce::String fileShort = file.getFullPathName()
+                                             .replaceCharacters ("\\", "/")
+                                             .replaceSection (0, sourceFolderToRemove.length(), juce::String::empty);
+
+                    stream->writeString ("#ifndef " + guard + "\r\n");
+                    stream->writeString ("    #include " + fileShort + "\r\n");
+                    stream->writeString ("#endif " + guard + "\r\n");
+                    stream->writeString ("\r\n");
+                }
+            }
+
+            stream->writeString ("#endif //" + headerGuard);
+        }
+
+        juce::File moduleCPP (destinationFolder.getFullPathName() + "/" + moduleName + ".cpp");
+        moduleCPP.deleteFile();
+        moduleCPP.create();
+
+        { //Write the CPP file contents:
+            juce::ScopedPointer<juce::FileOutputStream> stream = moduleCPP.createOutputStream();
+
+            stream->writeString ("#include \"" + moduleName + ".h\"" + "\r\n");
+        }
     }
 }

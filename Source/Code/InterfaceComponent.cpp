@@ -86,7 +86,7 @@ InterfaceComponent::InterfaceComponent()
     txtDestinationFolder->setScrollbarsShown (true);
     txtDestinationFolder->setCaretVisible (true);
     txtDestinationFolder->setPopupMenuEnabled (true);
-    txtDestinationFolder->setText ("C:/");
+    txtDestinationFolder->setText ("E:/Programming/Module Generations/");
 
     setSize (800, 600);
 }
@@ -156,9 +156,10 @@ void InterfaceComponent::buttonClicked (juce::Button* buttonThatWasClicked)
     {
         Modularizer modularizer (files);
 
-        modularizer.saveTo (juce::File (lblDestinationFolder->getText().trim()),
-                            lblFileName->getText().trim(),
-                            lblHeaderGuard->getText().trim());
+        modularizer.saveTo (juce::File (txtDestinationFolder->getText().trim()),
+                            txtSourceFileFolder->getText().trim(),
+                            txtModuleFilename->getText().trim(),
+                            txtHeaderGuard->getText().trim());
     }
     else if (buttonThatWasClicked == btnBrowse)
     {
