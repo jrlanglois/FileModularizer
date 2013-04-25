@@ -40,6 +40,7 @@ private:
     ScopedPointer<ListBox> fileListBox;
     ScopedPointer<TextButton> btnGenerate;
     ScopedPointer<TextButton> btnBrowse;
+    ScopedPointer<TextButton> btnRefresh;
     ScopedPointer<Label> lblFileName;
     ScopedPointer<Label> lblHeaderGuard;
     ScopedPointer<Label> lblDestinationFolder;

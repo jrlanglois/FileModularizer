@@ -20,10 +20,17 @@ InterfaceComponent::InterfaceComponent()
 
     addAndMakeVisible (btnBrowse = new TextButton ("btnBrowse"));
     btnBrowse->setButtonText ("Browse...");
-    btnBrowse->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
-    btnBrowse->addListener (this);
+    btnBrowse->setConnectedEdges (Button::ConnectedOnRight);
     btnBrowse->setColour (TextButton::buttonColourId, Colour (0xffbababa));
     btnBrowse->setColour (TextButton::buttonOnColourId, Colour (0xff909090));
+    btnBrowse->addListener (this);
+
+    addAndMakeVisible (btnRefresh = new TextButton ("btnRefresh"));
+    btnRefresh->setButtonText ("Refresh");
+    btnRefresh->setConnectedEdges (Button::ConnectedOnLeft);
+    btnRefresh->setColour (TextButton::buttonColourId, Colour (0xffbababa));
+    btnRefresh->setColour (TextButton::buttonOnColourId, Colour (0xff909090));
+    btnRefresh->addListener (this);
 
     addAndMakeVisible (lblFileName = new Label ("lblFileName", "Module Filename:"));
     lblFileName->setTooltip ("Will be the name for header and CPP files");
@@ -93,6 +100,7 @@ InterfaceComponent::~InterfaceComponent()
     grpClassConfiguration = nullptr;
     btnGenerate = nullptr;
     btnBrowse = nullptr;
+    btnRefresh = nullptr;
     txtSourceFileFolder = nullptr;
     txtHeaderGuard = nullptr;
     txtModuleFilename = nullptr;
@@ -114,7 +122,8 @@ void InterfaceComponent::resized()
     grpClassConfiguration->setBounds (8, 448, 784, 144);
     fileListBox->setBounds (8, 40, 784, 384);
     btnGenerate->setBounds (632, 552, 150, 24);
-    btnBrowse->setBounds (640, 8, 150, 24);
+    btnBrowse->setBounds (640, 8, 75, 24);
+    btnRefresh->setBounds (715, 8, 75, 24);
     lblFileName->setBounds (24, 472, 144, 24);
     lblHeaderGuard->setBounds (24, 512, 144, 24);
     lblDestinationFolder->setBounds (24, 552, 144, 24);
@@ -167,6 +176,22 @@ void InterfaceComponent::buttonClicked (juce::Button* buttonThatWasClicked)
             const juce::File folder (chooser.getResult());
 
             txtSourceFileFolder->setText (folder.getFullPathName().trim(), juce::sendNotification);
+            txtDestinationFolder->setText (folder.getParentDirectory().getFullPathName().trim(), juce::sendNotification);
+
+            Modularizer modularizer (folder, true);
+            files = modularizer.getFiles();
+
+            fileListBox->setSelectedRows (juce::SparseSet<int>());
+            fileListBox->updateContent();
+        }
+    }
+    else if (buttonThatWasClicked == btnRefresh)
+    {
+        juce::File folder (txtSourceFileFolder->getText().trim());
+
+        if (folder.isDirectory())
+        {
+            txtDestinationFolder->setText (folder.getParentDirectory().getFullPathName().trim(), juce::sendNotification);
 
             Modularizer modularizer (folder, true);
             files = modularizer.getFiles();
