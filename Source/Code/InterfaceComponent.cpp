@@ -56,10 +56,7 @@ InterfaceComponent::InterfaceComponent()
     txtSourceFileFolder->setScrollbarsShown (true);
     txtSourceFileFolder->setCaretVisible (true);
     txtSourceFileFolder->setPopupMenuEnabled (true);
-    txtSourceFileFolder->setText ("C:/Users/UUO/Documents/Work/noteloop/Source/Modules/Applications/");
-
-    Modularizer mod (juce::File ("C:/Users/UUO/Documents/Work/noteloop/Source/Modules/Applications/"), true);
-    files = mod.getFiles();
+    txtSourceFileFolder->setText ("");
 
     addAndMakeVisible (txtModuleFilename = new TextEditor ("txtModuleFilename"));
     txtModuleFilename->setMultiLine (false);
@@ -86,7 +83,7 @@ InterfaceComponent::InterfaceComponent()
     txtDestinationFolder->setScrollbarsShown (true);
     txtDestinationFolder->setCaretVisible (true);
     txtDestinationFolder->setPopupMenuEnabled (true);
-    txtDestinationFolder->setText ("E:/Programming/Module Generations/");
+    txtDestinationFolder->setText ("");
 
     setSize (800, 600);
 }
