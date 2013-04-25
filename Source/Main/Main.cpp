@@ -38,7 +38,7 @@ public:
     public:
         MainWindow() : DocumentWindow ("File Modularizer",
                                        Colours::lightgrey,
-                                       DocumentWindow::allButtons)
+                                       DocumentWindow::closeButton)
         {
             setContentOwned (new MainComponent(), true);
 
