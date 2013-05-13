@@ -88,8 +88,11 @@ void Modularizer::saveTo (const juce::File& destinationFolder,
         moduleHeader.deleteFile();
         moduleHeader.create();
 
+        const bool endsWithSlash = sourceFolderToRemove.endsWith ("/") || sourceFolderToRemove.endsWith ("\\");
+        const int numPathCharsToRemove = sourceFolderToRemove.length() - (endsWithSlash ? 1 : 0);
+
         { //Write the header file contents:
-            juce::String data;
+            juce::String data (juce::String::empty);
 
             data << "#ifndef " << headerGuard << "\r\n";
             data << "#define " << headerGuard << "\r\n";
@@ -99,26 +102,29 @@ void Modularizer::saveTo (const juce::File& destinationFolder,
 
             for (int i = 0; i < files.size(); ++i)
             {
-                juce::File file (files[i]);
+                const juce::File file (files[i]);
 
                 if (file.hasFileExtension (".h"))
                 {
-                    juce::ScopedPointer<juce::FileInputStream> guardFinder = file.createInputStream();
+                    juce::ScopedPointer<juce::FileInputStream> guardFinder (file.createInputStream());
                     jassert (guardFinder != nullptr);
 
                     juce::String code = guardFinder->readString();
                     const int startIndex = code.indexOf ("#ifndef ") + 8;
                     const int endIndex = startIndex + code.substring (startIndex).indexOf ("\n");
 
-                    juce::String guard = code.substring (startIndex, endIndex)
-                                             .trim()
-                                             .removeCharacters ("\r\n")
-                                             .removeCharacters ("\n")
-                                             .removeCharacters ("\r");
+                    const juce::String guard = code.substring (startIndex, endIndex)
+                                                   .trim()
+                                                   .removeCharacters ("\r\n")
+                                                   .removeCharacters ("\n")
+                                                   .removeCharacters ("\r");
 
                     juce::String fileShort = file.getFullPathName()
                                                  .replaceCharacters ("\\", "/")
-                                                 .replaceSection (0, sourceFolderToRemove.length(), juce::String::empty);
+                                                 .replaceSection (0, numPathCharsToRemove, juce::String::empty);
+
+                    if (fileShort.startsWith ("/"))
+                        fileShort = fileShort.substring (1);
 
                     data << "#ifndef " << guard << "\r\n";
                     data << "    #include \"" << fileShort << "\"\r\n";
@@ -129,36 +135,39 @@ void Modularizer::saveTo (const juce::File& destinationFolder,
 
             data << "#endif //" << headerGuard;
 
-            juce::ScopedPointer<juce::FileOutputStream> stream = moduleHeader.createOutputStream();
+            juce::ScopedPointer<juce::FileOutputStream> stream (moduleHeader.createOutputStream());
             stream->writeText (data, false, false);
         }
 
-        juce::File moduleCPP (destinationFolder.getFullPathName() + "/" + moduleName + ".cpp");
+        const juce::File moduleCPP (destinationFolder.getFullPathName() + "/" + moduleName + ".cpp");
         moduleCPP.deleteFile();
         moduleCPP.create();
 
         { //Write the CPP file contents:
-            juce::String data;
+            juce::String data (juce::String::empty);
 
             data << "#include \"" << moduleName << ".h\"" << "\r\n";
             data << "\r\n";
 
             for (int i = 0; i < files.size(); ++i)
             {
-                juce::File file (files[i]);
+                const juce::File file (files[i]);
 
                 if (file.hasFileExtension (".c;.cpp;.hpp"))
                 {
                     juce::String fileShort = file.getFullPathName()
                                                  .replaceCharacters ("\\", "/")
-                                                 .replaceSection (0, sourceFolderToRemove.length(), juce::String::empty);
+                                                 .replaceSection (0, numPathCharsToRemove, juce::String::empty);
+
+                    if (fileShort.startsWith ("/"))
+                        fileShort = fileShort.substring (1);
 
                     data << "#include \"" << fileShort << "\"";
                     data << "\r\n";
                 }
             }
 
-            juce::ScopedPointer<juce::FileOutputStream> stream = moduleCPP.createOutputStream();
+            juce::ScopedPointer<juce::FileOutputStream> stream (moduleCPP.createOutputStream());
             stream->writeText (data, false, false);
         }
     }
