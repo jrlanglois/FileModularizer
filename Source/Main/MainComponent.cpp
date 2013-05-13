@@ -11,7 +11,7 @@ MainComponent::~MainComponent()
 }
 
 //==============================================================================
-void MainComponent::paint (Graphics& /*g*/)
+void MainComponent::paint (juce::Graphics& /*g*/)
 {
 }
 

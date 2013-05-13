@@ -3,7 +3,7 @@
 
 #include "../Code/InterfaceComponent.h"
 
-class MainComponent : public Component
+class MainComponent : public juce::Component
 {
 public:
     MainComponent();
@@ -12,7 +12,7 @@ public:
 
     //==============================================================================
     /** @internal */
-    void paint (Graphics& g);
+    void paint (juce::Graphics& g);
     /** @internal */
     void resized();
 

@@ -5,58 +5,58 @@ InterfaceComponent::InterfaceComponent()
     addAndMakeVisible (grpClassConfiguration = new juce::GroupComponent ("grpClassConfiguration", "Class Configuration"));
     grpClassConfiguration->setColour (juce::GroupComponent::ColourIds::textColourId, juce::Colours::white);
 
-    addAndMakeVisible (fileListBox = new ListBox ("fileListBox", this));
-    fileListBox->setColour (ListBox::outlineColourId, Colours::white.withAlpha (0.5f));
-    fileListBox->setColour (ListBox::textColourId, Colours::white);
-    fileListBox->setColour (ListBox::backgroundColourId, Colours::darkgrey.brighter().withAlpha (0.5f));
+    addAndMakeVisible (fileListBox = new juce::ListBox ("fileListBox", this));
+    fileListBox->setColour (juce::ListBox::outlineColourId, juce::Colours::white.withAlpha (0.5f));
+    fileListBox->setColour (juce::ListBox::textColourId, juce::Colours::white);
+    fileListBox->setColour (juce::ListBox::backgroundColourId, juce::Colours::darkgrey.brighter().withAlpha (0.5f));
     fileListBox->setMultipleSelectionEnabled (true);
 
-    addAndMakeVisible (btnGenerate = new TextButton ("btnGenerate"));
+    addAndMakeVisible (btnGenerate = new juce::TextButton ("btnGenerate"));
     btnGenerate->setTooltip ("Generates a module at a specified folder");
     btnGenerate->setButtonText ("Generate");
     btnGenerate->addListener (this);
-    btnGenerate->setColour (TextButton::buttonColourId, Colour (0xff3dc40d));
-    btnGenerate->setColour (TextButton::buttonOnColourId, Colour (0xff007a06));
+    btnGenerate->setColour (juce::TextButton::buttonColourId, juce::Colour (0xff3dc40d));
+    btnGenerate->setColour (juce::TextButton::buttonOnColourId, juce::Colour (0xff007a06));
 
-    addAndMakeVisible (btnBrowse = new TextButton ("btnBrowse"));
+    addAndMakeVisible (btnBrowse = new juce::TextButton ("btnBrowse"));
     btnBrowse->setButtonText ("Browse...");
-    btnBrowse->setConnectedEdges (Button::ConnectedOnRight);
-    btnBrowse->setColour (TextButton::buttonColourId, Colour (0xffbababa));
-    btnBrowse->setColour (TextButton::buttonOnColourId, Colour (0xff909090));
+    btnBrowse->setConnectedEdges (juce::Button::ConnectedOnRight);
+    btnBrowse->setColour (juce::TextButton::buttonColourId, juce::Colour (0xffbababa));
+    btnBrowse->setColour (juce::TextButton::buttonOnColourId, juce::Colour (0xff909090));
     btnBrowse->addListener (this);
 
-    addAndMakeVisible (btnRefresh = new TextButton ("btnRefresh"));
+    addAndMakeVisible (btnRefresh = new juce::TextButton ("btnRefresh"));
     btnRefresh->setButtonText ("Refresh");
-    btnRefresh->setConnectedEdges (Button::ConnectedOnLeft);
-    btnRefresh->setColour (TextButton::buttonColourId, Colour (0xffbababa));
-    btnRefresh->setColour (TextButton::buttonOnColourId, Colour (0xff909090));
+    btnRefresh->setConnectedEdges (juce::Button::ConnectedOnLeft);
+    btnRefresh->setColour (juce::TextButton::buttonColourId, juce::Colour (0xffbababa));
+    btnRefresh->setColour (juce::TextButton::buttonOnColourId, juce::Colour (0xff909090));
     btnRefresh->addListener (this);
 
-    addAndMakeVisible (lblFileName = new Label ("lblFileName", "Module Filename:"));
+    addAndMakeVisible (lblFileName = new juce::Label ("lblFileName", "Module Filename:"));
     lblFileName->setTooltip ("Will be the name for header and CPP files");
-    lblFileName->setFont (Font (15.00f, Font::plain));
-    lblFileName->setJustificationType (Justification::centredRight);
+    lblFileName->setFont (juce::Font (15.00f, juce::Font::plain));
+    lblFileName->setJustificationType (juce::Justification::centredRight);
     lblFileName->setEditable (false, false, false);
-    lblFileName->setColour (Label::textColourId, Colours::white);
-    lblFileName->setColour (Label::backgroundColourId, Colour (juce::Colours::transparentBlack));
+    lblFileName->setColour (juce::Label::textColourId, juce::Colours::white);
+    lblFileName->setColour (juce::Label::backgroundColourId, juce::Colour (juce::Colours::transparentBlack));
 
-    addAndMakeVisible (lblHeaderGuard = new Label ("lblHeaderGuard", "Header Guard:"));
+    addAndMakeVisible (lblHeaderGuard = new juce::Label ("lblHeaderGuard", "Header Guard:"));
     lblHeaderGuard->setTooltip ("Will be the header file\'s include guard");
-    lblHeaderGuard->setFont (Font (15.00f, Font::plain));
-    lblHeaderGuard->setJustificationType (Justification::centredRight);
+    lblHeaderGuard->setFont (juce::Font (15.00f, juce::Font::plain));
+    lblHeaderGuard->setJustificationType (juce::Justification::centredRight);
     lblHeaderGuard->setEditable (false, false, false);
-    lblHeaderGuard->setColour (Label::textColourId, Colours::white);
-    lblHeaderGuard->setColour (Label::backgroundColourId, Colour (juce::Colours::transparentBlack));
+    lblHeaderGuard->setColour (juce::Label::textColourId, juce::Colours::white);
+    lblHeaderGuard->setColour (juce::Label::backgroundColourId, juce::Colour (juce::Colours::transparentBlack));
 
-    addAndMakeVisible (lblDestinationFolder = new Label ("lblDestinationFolder", "Destination Folder:"));
+    addAndMakeVisible (lblDestinationFolder = new juce::Label ("lblDestinationFolder", "Destination Folder:"));
     lblDestinationFolder->setTooltip ("Will be the header file\'s include guard");
-    lblDestinationFolder->setFont (Font (15.00f, Font::plain));
-    lblDestinationFolder->setJustificationType (Justification::centredRight);
+    lblDestinationFolder->setFont (juce::Font (15.00f, juce::Font::plain));
+    lblDestinationFolder->setJustificationType (juce::Justification::centredRight);
     lblDestinationFolder->setEditable (false, false, false);
-    lblDestinationFolder->setColour (Label::textColourId, Colours::white);
-    lblDestinationFolder->setColour (Label::backgroundColourId, Colour (juce::Colours::transparentBlack));
+    lblDestinationFolder->setColour (juce::Label::textColourId, juce::Colours::white);
+    lblDestinationFolder->setColour (juce::Label::backgroundColourId, juce::Colour (juce::Colours::transparentBlack));
 
-    addAndMakeVisible (txtSourceFileFolder = new TextEditor ("txtSourceFileFolder"));
+    addAndMakeVisible (txtSourceFileFolder = new juce::TextEditor ("txtSourceFileFolder"));
     txtSourceFileFolder->setMultiLine (false);
     txtSourceFileFolder->setReturnKeyStartsNewLine (false);
     txtSourceFileFolder->setReadOnly (false);
@@ -65,7 +65,7 @@ InterfaceComponent::InterfaceComponent()
     txtSourceFileFolder->setPopupMenuEnabled (true);
     txtSourceFileFolder->setText ("");
 
-    addAndMakeVisible (txtModuleFilename = new TextEditor ("txtModuleFilename"));
+    addAndMakeVisible (txtModuleFilename = new juce::TextEditor ("txtModuleFilename"));
     txtModuleFilename->setMultiLine (false);
     txtModuleFilename->setReturnKeyStartsNewLine (false);
     txtModuleFilename->setReadOnly (false);
@@ -74,7 +74,7 @@ InterfaceComponent::InterfaceComponent()
     txtModuleFilename->setPopupMenuEnabled (true);
     txtModuleFilename->setText ("MyModule");
 
-    addAndMakeVisible (txtHeaderGuard = new TextEditor ("txtHeaderGuard"));
+    addAndMakeVisible (txtHeaderGuard = new juce::TextEditor ("txtHeaderGuard"));
     txtHeaderGuard->setMultiLine (false);
     txtHeaderGuard->setReturnKeyStartsNewLine (false);
     txtHeaderGuard->setReadOnly (false);
@@ -83,7 +83,7 @@ InterfaceComponent::InterfaceComponent()
     txtHeaderGuard->setPopupMenuEnabled (true);
     txtHeaderGuard->setText ("MYCLASS_H");
 
-    addAndMakeVisible (txtDestinationFolder = new TextEditor ("txtDestinationFolder"));
+    addAndMakeVisible (txtDestinationFolder = new juce::TextEditor ("txtDestinationFolder"));
     txtDestinationFolder->setMultiLine (false);
     txtDestinationFolder->setReturnKeyStartsNewLine (false);
     txtDestinationFolder->setReadOnly (false);
@@ -187,7 +187,7 @@ void InterfaceComponent::buttonClicked (juce::Button* buttonThatWasClicked)
     }
     else if (buttonThatWasClicked == btnRefresh)
     {
-        juce::File folder (txtSourceFileFolder->getText().trim());
+        const juce::File folder (txtSourceFileFolder->getText().trim());
 
         if (folder.isDirectory())
         {

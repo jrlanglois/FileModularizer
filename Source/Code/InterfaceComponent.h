@@ -36,18 +36,18 @@ private:
     juce::StringArray files;
 
     //==============================================================================
-    ScopedPointer<GroupComponent> grpClassConfiguration;
-    ScopedPointer<ListBox> fileListBox;
-    ScopedPointer<TextButton> btnGenerate;
-    ScopedPointer<TextButton> btnBrowse;
-    ScopedPointer<TextButton> btnRefresh;
-    ScopedPointer<Label> lblFileName;
-    ScopedPointer<Label> lblHeaderGuard;
-    ScopedPointer<Label> lblDestinationFolder;
-    ScopedPointer<TextEditor> txtSourceFileFolder;
-    ScopedPointer<TextEditor> txtModuleFilename;
-    ScopedPointer<TextEditor> txtHeaderGuard;
-    ScopedPointer<TextEditor> txtDestinationFolder;
+    juce::ScopedPointer<juce::GroupComponent> grpClassConfiguration;
+    juce::ScopedPointer<juce::ListBox> fileListBox;
+    juce::ScopedPointer<juce::TextButton> btnGenerate;
+    juce::ScopedPointer<juce::TextButton> btnBrowse;
+    juce::ScopedPointer<juce::TextButton> btnRefresh;
+    juce::ScopedPointer<juce::Label> lblFileName;
+    juce::ScopedPointer<juce::Label> lblHeaderGuard;
+    juce::ScopedPointer<juce::Label> lblDestinationFolder;
+    juce::ScopedPointer<juce::TextEditor> txtSourceFileFolder;
+    juce::ScopedPointer<juce::TextEditor> txtModuleFilename;
+    juce::ScopedPointer<juce::TextEditor> txtHeaderGuard;
+    juce::ScopedPointer<juce::TextEditor> txtDestinationFolder;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (InterfaceComponent)

@@ -1,13 +1,13 @@
 #include "MainComponent.h"
 
-class FileModularizerApplication : public JUCEApplication
+class FileModularizerApplication : public juce::JUCEApplication
 {
 public:
     FileModularizerApplication()    { }
     ~FileModularizerApplication()   { }
 
     //==============================================================================
-    void initialise (const String& /*commandLine*/)
+    void initialise (const juce::String& /*commandLine*/)
     {
         mainWindow = new MainWindow();
     }
@@ -23,22 +23,22 @@ public:
         quit();
     }
 
-    void anotherInstanceStarted (const String& /*commandLine*/)
+    void anotherInstanceStarted (const juce::String& /*commandLine*/)
     {
     }
 
     //==============================================================================
-    const String getApplicationName()       { return ProjectInfo::projectName; }
-    const String getApplicationVersion()    { return ProjectInfo::versionString; }
-    bool moreThanOneInstanceAllowed()       { return true; }
+    const juce::String getApplicationName()     { return ProjectInfo::projectName; }
+    const juce::String getApplicationVersion()  { return ProjectInfo::versionString; }
+    bool moreThanOneInstanceAllowed()           { return true; }
 
     //==============================================================================
-    class MainWindow : public DocumentWindow
+    class MainWindow : public juce::DocumentWindow
     {
     public:
-        MainWindow() : DocumentWindow ("File Modularizer",
-                                       Colours::lightgrey,
-                                       DocumentWindow::closeButton)
+        MainWindow() : juce::DocumentWindow ("File Modularizer",
+                                             juce::Colours::lightgrey,
+                                             juce::DocumentWindow::closeButton)
         {
             setContentOwned (new MainComponent(), true);
 
@@ -56,7 +56,7 @@ public:
     };
 
 private:
-    ScopedPointer<MainWindow> mainWindow;
+    juce::ScopedPointer<MainWindow> mainWindow;
 };
 
 //==============================================================================
