@@ -43,7 +43,10 @@ InterfaceComponent::InterfaceComponent()
     txtNamespace = addTextEditor();
     txtDestinationFolder = addTextEditor();
 
+    txtSourceFileFolder->addListener (this);
+
     setSize (800, 600);
+    startTimer (timerIntervalMS);
 }
 
 InterfaceComponent::~InterfaceComponent()
@@ -161,17 +164,7 @@ void InterfaceComponent::buttonClicked (juce::Button* buttonThatWasClicked)
     }
     else if (buttonThatWasClicked == btnRefresh)
     {
-        const juce::File folder (txtSourceFileFolder->getText().trim());
-
-        if (folder.isDirectory())
-        {
-            txtDestinationFolder->setText (folder.getParentDirectory().getFullPathName().trim(), juce::sendNotification);
-
-            files = Modularizer (folder, true).getFiles();
-
-            fileListBox->setSelectedRows (juce::SparseSet<int>());
-            fileListBox->updateContent();
-        }
+        refresh();
     }
     else if (buttonThatWasClicked == btnGenerate)
     {
@@ -204,8 +197,6 @@ void InterfaceComponent::paintListBoxItem (const int rowNumber,
                                            const int width, const int height,
                                            const bool isRowSelected)
 {
-    const juce::Colour textColour (fileListBox->findColour (juce::ListBox::textColourId));
-
     if (isRowSelected)
     {
         g.fillAll (juce::Colours::white.darker());
@@ -213,7 +204,7 @@ void InterfaceComponent::paintListBoxItem (const int rowNumber,
     }
     else
     {
-        g.setColour (textColour);
+        g.setColour (fileListBox->findColour (juce::ListBox::textColourId));
     }
 
     g.setFont (height * 0.7f);
@@ -228,9 +219,36 @@ void InterfaceComponent::paintListBoxItem (const int rowNumber,
     const float thickness = 0.25f;
 
     g.setColour (juce::Colours::lightgrey);
+
     g.drawLine (offset, h - thickness,
                 w - (offset * 2.0f), h - thickness,
                 thickness);
+}
+
+void InterfaceComponent::textEditorTextChanged (juce::TextEditor& editor)
+{
+    if (&editor == txtSourceFileFolder)
+    {
+        stopTimer();
+    }
+    else
+    {
+        startTimer (timerIntervalMS);
+    }
+}
+
+void InterfaceComponent::textEditorFocusLost (juce::TextEditor& editor)
+{
+    if (&editor == txtSourceFileFolder)
+    {
+        startTimer (timerIntervalMS);
+    }
+}
+
+
+void InterfaceComponent::timerCallback()
+{
+    refresh();
 }
 
 //==============================================================================
@@ -281,4 +299,29 @@ int InterfaceComponent::getLargestTextWidth() const
     }
 
     return largestWidth;
+}
+
+void InterfaceComponent::refresh()
+{
+    const juce::String folderPath (txtSourceFileFolder->getText().trim());
+
+    if (folderPath.isNotEmpty()
+        && juce::File::isAbsolutePath (folderPath))
+    {
+        const juce::File folder (folderPath);
+
+        if (folder.isDirectory())
+        {
+            txtDestinationFolder->setText (folder.getParentDirectory().getFullPathName().trim(), juce::sendNotification);
+
+            const juce::StringArray fileList = Modularizer (folder, true).getFiles();
+
+            if (fileList != files)
+            {
+                files = fileList;
+                fileListBox->setSelectedRows (juce::SparseSet<int>());
+                fileListBox->updateContent();
+            }
+        }
+    }
 }

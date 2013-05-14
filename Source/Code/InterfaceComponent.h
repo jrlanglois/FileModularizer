@@ -4,8 +4,10 @@
 #include "Modularizer.h"
 
 class InterfaceComponent : public juce::Component,
-                           public juce::ListBoxModel,
-                           public juce::Button::Listener
+                           private juce::ListBoxModel,
+                           private juce::Button::Listener,
+                           private juce::TextEditor::Listener,
+                           private juce::Timer
 {
 public:
     /**
@@ -36,6 +38,15 @@ public:
                            juce::Graphics& g,
                            int width, int height,
                            bool rowIsSelected);
+    /** @internal */
+    void textEditorTextChanged (juce::TextEditor& editor);
+    /** @internal */
+    void textEditorFocusLost (juce::TextEditor& editor);
+    /** @internal */
+    void timerCallback();
+
+    //==============================================================================
+    static const int timerIntervalMS = 8000;
 
 private:
     //==============================================================================
@@ -66,6 +77,8 @@ private:
     juce::TextEditor* addTextEditor (const juce::String& text = juce::String::empty);
 
     int getLargestTextWidth() const;
+
+    void refresh();
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (InterfaceComponent)
