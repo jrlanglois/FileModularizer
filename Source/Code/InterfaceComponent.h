@@ -57,7 +57,6 @@ private:
     juce::ScopedPointer<juce::TextEditor> txtNamespace;
     juce::ScopedPointer<juce::TextEditor> txtDestinationFolder;
 
-    int numConfigItems;
     juce::Array<juce::Label*> labelList;
 
     //==============================================================================

@@ -1,7 +1,6 @@
 #include "InterfaceComponent.h"
 
-InterfaceComponent::InterfaceComponent() :
-    numConfigItems (0)
+InterfaceComponent::InterfaceComponent()
 {
     addAndMakeVisible (btnGenerate = new juce::TextButton ("btnGenerate"));
     btnGenerate->setTooltip ("Generates a module at a specified folder");
@@ -71,6 +70,8 @@ void InterfaceComponent::paint (juce::Graphics& g)
 
 void InterfaceComponent::resized()
 {
+    const int numConfigItems = labelList.size();
+
     const int margin = 8;
     const int halfMargin = margin / 2;
     const int marginDouble = margin * 2;
@@ -246,7 +247,6 @@ juce::Label* InterfaceComponent::addLabel (const juce::String& text,
     label->setColour (juce::Label::backgroundColourId, juce::Colour (juce::Colours::transparentBlack));
     addAndMakeVisible (label);
 
-    ++numConfigItems;
     labelList.add (label);
 
     return label;

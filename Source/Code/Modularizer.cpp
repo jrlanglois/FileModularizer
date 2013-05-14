@@ -114,7 +114,7 @@ void Modularizer::saveTo (const juce::File& destinationFolder,
 
             if (namespaceToUse.isNotEmpty())
             {
-                data << namespaceToUse << juce::newLine;
+                data << "namespace " << namespaceToUse << juce::newLine;
                 data << "{" << juce::newLine;
             }
 
@@ -147,16 +147,16 @@ void Modularizer::saveTo (const juce::File& destinationFolder,
                     data << spacer << "#ifndef " << guard << juce::newLine;
                     data << spacer <<"    #include \"" << fileShort << juce::newLine;
                     data << spacer <<"#endif " << guard << juce::newLine;
-                    data << juce::newLine;
+
+                    if (i != (files.size() - 1))
+                        data << juce::newLine;
                 }
             }
 
             if (namespaceToUse.isNotEmpty())
-            {
                 data << "}" << juce::newLine;
-                data << juce::newLine;
-            }
 
+            data << juce::newLine;
             data << "#endif //" << headerGuardToUse;
 
             juce::ScopedPointer<juce::FileOutputStream> stream (moduleHeader.createOutputStream());
@@ -175,7 +175,7 @@ void Modularizer::saveTo (const juce::File& destinationFolder,
 
             if (namespaceToUse.isNotEmpty())
             {
-                data << namespaceToUse << juce::newLine;
+                data << "namespace " << namespaceToUse << juce::newLine;
                 data << "{" << juce::newLine;
             }
 
@@ -192,7 +192,7 @@ void Modularizer::saveTo (const juce::File& destinationFolder,
                     if (fileShort.startsWith ("/"))
                         fileShort = fileShort.substring (1);
 
-                    data << "#include \"" << fileShort << "\"";
+                    data << spacer << "#include \"" << fileShort << "\"";
 
                     if (i != (files.size() - 1))
                         data << juce::newLine;
@@ -200,10 +200,7 @@ void Modularizer::saveTo (const juce::File& destinationFolder,
             }
 
             if (namespaceToUse.isNotEmpty())
-            {
-                data << "}" << juce::newLine;
-                data << juce::newLine;
-            }
+                data << "}";
 
             juce::ScopedPointer<juce::FileOutputStream> stream (moduleCPP.createOutputStream());
             stream->writeText (data, false, false);
