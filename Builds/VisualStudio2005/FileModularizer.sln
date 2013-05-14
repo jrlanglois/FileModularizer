@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual C++ Express 2005
+Project("{D610F9A5-F90A-41F1-3BCD-96B0B96C1AF1}") = "FileModularizer", "FileModularizer.vcproj", "{B4DA7A91-3E1F-33E1-F99E-ED3AC431393C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4DA7A91-3E1F-33E1-F99E-ED3AC431393C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B4DA7A91-3E1F-33E1-F99E-ED3AC431393C}.Debug|Win32.Build.0 = Debug|Win32
+		{B4DA7A91-3E1F-33E1-F99E-ED3AC431393C}.Release|Win32.ActiveCfg = Release|Win32
+		{B4DA7A91-3E1F-33E1-F99E-ED3AC431393C}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
