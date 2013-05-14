@@ -10,12 +10,13 @@ Modularizer::Modularizer (const juce::File& folder,
 {
     if (folder.isDirectory())
     {
-        juce::StringArray paths;
         juce::Array<juce::File> f;
         folder.findChildFiles (f, juce::File::findFiles, searchRecursively);
 
+        juce::StringArray paths;
+
         for (int i = 0; i < f.size(); ++i)
-            paths.add (f[i].getFullPathName());
+            paths.add (f.getReference (i).getFullPathName());
 
         copyAndfilterBadFiles (paths);
     }
@@ -77,28 +78,45 @@ void Modularizer::copyAndfilterBadFiles (const juce::StringArray& f)
 void Modularizer::saveTo (const juce::File& destinationFolder,
                           const juce::String& sourceFolderToRemove,
                           const juce::String& moduleName,
-                          const juce::String& headerGuard)
+                          const juce::String& headerGuard,
+                          const juce::String& desiredNamespace)
 {
     if (files.size() > 0
         && sourceFolderToRemove.isNotEmpty()
         && moduleName.isNotEmpty()
         && headerGuard.isNotEmpty())
     {
-        juce::File moduleHeader (destinationFolder.getFullPathName() + "/" + moduleName + ".h");
+        const juce::String moduleNameToUse (moduleName.trim());
+        const juce::String headerGuardToUse (headerGuard.toUpperCase().trim());
+        const juce::String namespaceToUse (desiredNamespace.trim());
+
+        const juce::File moduleHeader (destinationFolder.getFullPathName() + "/" + moduleNameToUse + ".h");
         moduleHeader.deleteFile();
         moduleHeader.create();
 
         const bool endsWithSlash = sourceFolderToRemove.endsWith ("/") || sourceFolderToRemove.endsWith ("\\");
         const int numPathCharsToRemove = sourceFolderToRemove.length() - (endsWithSlash ? 1 : 0);
 
+        const int numSpaces = desiredNamespace.isEmpty() ? 0 : 4;
+        juce::String spacer (juce::String::empty);
+
+        for (int i = numSpaces; --i >= 0;)
+            spacer += " ";
+
         { //Write the header file contents:
             juce::String data (juce::String::empty);
 
-            data << "#ifndef " << headerGuard << "\r\n";
-            data << "#define " << headerGuard << "\r\n";
-            data << "\r\n";
-            data << "\r\n";
-            data << "\r\n";
+            data << "#ifndef " << headerGuardToUse << juce::newLine;
+            data << "#define " << headerGuardToUse << juce::newLine;
+            data << juce::newLine;
+            data << juce::newLine;
+            data << juce::newLine;
+
+            if (namespaceToUse.isNotEmpty())
+            {
+                data << namespaceToUse << juce::newLine;
+                data << "{" << juce::newLine;
+            }
 
             for (int i = 0; i < files.size(); ++i)
             {
@@ -115,7 +133,7 @@ void Modularizer::saveTo (const juce::File& destinationFolder,
 
                     const juce::String guard = code.substring (startIndex, endIndex)
                                                    .trim()
-                                                   .removeCharacters ("\r\n")
+                                                   .removeCharacters (juce::newLine)
                                                    .removeCharacters ("\n")
                                                    .removeCharacters ("\r");
 
@@ -126,28 +144,40 @@ void Modularizer::saveTo (const juce::File& destinationFolder,
                     if (fileShort.startsWith ("/"))
                         fileShort = fileShort.substring (1);
 
-                    data << "#ifndef " << guard << "\r\n";
-                    data << "    #include \"" << fileShort << "\"\r\n";
-                    data << "#endif " << guard << "\r\n";
-                    data << "\r\n";
+                    data << spacer << "#ifndef " << guard << juce::newLine;
+                    data << spacer <<"    #include \"" << fileShort << juce::newLine;
+                    data << spacer <<"#endif " << guard << juce::newLine;
+                    data << juce::newLine;
                 }
             }
 
-            data << "#endif //" << headerGuard;
+            if (namespaceToUse.isNotEmpty())
+            {
+                data << "}" << juce::newLine;
+                data << juce::newLine;
+            }
+
+            data << "#endif //" << headerGuardToUse;
 
             juce::ScopedPointer<juce::FileOutputStream> stream (moduleHeader.createOutputStream());
             stream->writeText (data, false, false);
         }
 
-        const juce::File moduleCPP (destinationFolder.getFullPathName() + "/" + moduleName + ".cpp");
+        const juce::File moduleCPP (destinationFolder.getFullPathName() + "/" + moduleNameToUse + ".cpp");
         moduleCPP.deleteFile();
         moduleCPP.create();
 
         { //Write the CPP file contents:
             juce::String data (juce::String::empty);
 
-            data << "#include \"" << moduleName << ".h\"" << "\r\n";
-            data << "\r\n";
+            data << "#include \"" << moduleNameToUse << ".h\"" << juce::newLine;
+            data << juce::newLine;
+
+            if (namespaceToUse.isNotEmpty())
+            {
+                data << namespaceToUse << juce::newLine;
+                data << "{" << juce::newLine;
+            }
 
             for (int i = 0; i < files.size(); ++i)
             {
@@ -163,8 +193,16 @@ void Modularizer::saveTo (const juce::File& destinationFolder,
                         fileShort = fileShort.substring (1);
 
                     data << "#include \"" << fileShort << "\"";
-                    data << "\r\n";
+
+                    if (i != (files.size() - 1))
+                        data << juce::newLine;
                 }
+            }
+
+            if (namespaceToUse.isNotEmpty())
+            {
+                data << "}" << juce::newLine;
+                data << juce::newLine;
             }
 
             juce::ScopedPointer<juce::FileOutputStream> stream (moduleCPP.createOutputStream());

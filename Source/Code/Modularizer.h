@@ -19,7 +19,8 @@ public:
     void saveTo (const juce::File& destinationFolder,
                  const juce::String& sourceFolderToRemove,
                  const juce::String& moduleName,
-                 const juce::String& headerGuard);
+                 const juce::String& headerGuard,
+                 const juce::String& desiredNamespace);
 
     bool containsOldCStyleCodeFiles() const;
 

@@ -8,8 +8,14 @@ class InterfaceComponent : public juce::Component,
                            public juce::Button::Listener
 {
 public:
+    /**
+    * Constructor
+    */
     InterfaceComponent();
 
+    /**
+    * Destructor
+    */
     ~InterfaceComponent();
 
     //==============================================================================
@@ -43,11 +49,24 @@ private:
     juce::ScopedPointer<juce::TextButton> btnRefresh;
     juce::ScopedPointer<juce::Label> lblFileName;
     juce::ScopedPointer<juce::Label> lblHeaderGuard;
+    juce::ScopedPointer<juce::Label> lblNamespace;
     juce::ScopedPointer<juce::Label> lblDestinationFolder;
     juce::ScopedPointer<juce::TextEditor> txtSourceFileFolder;
     juce::ScopedPointer<juce::TextEditor> txtModuleFilename;
     juce::ScopedPointer<juce::TextEditor> txtHeaderGuard;
+    juce::ScopedPointer<juce::TextEditor> txtNamespace;
     juce::ScopedPointer<juce::TextEditor> txtDestinationFolder;
+
+    int numConfigItems;
+    juce::Array<juce::Label*> labelList;
+
+    //==============================================================================
+    juce::Label* addLabel (const juce::String& text = juce::String::empty,
+                           const juce::String& tooltip = juce::String::empty);
+
+    juce::TextEditor* addTextEditor (const juce::String& text = juce::String::empty);
+
+    int getLargestTextWidth() const;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (InterfaceComponent)
