@@ -4,19 +4,19 @@
               bundleIdentifier="com.jrlanglois.FileModularizer" jucerVersion="3.1.0"
               companyName="Jo&#235;l R. Langlois">
   <MAINGROUP id="QhXoUH" name="FileModularizer">
-    <GROUP id="{C1DDB888-1E3C-435F-7E2E-B6A7D2E33C0A}" name="Code">
-      <FILE id="Ze3R1M" name="InterfaceComponent.cpp" compile="1" resource="0"
+    <GROUP id="{42C2EEC1-BDD2-2E1F-2D4B-02A37A710D55}" name="Code">
+      <FILE id="L7h40v" name="InterfaceComponent.cpp" compile="1" resource="0"
             file="Source/Code/InterfaceComponent.cpp"/>
-      <FILE id="xwcfR3" name="InterfaceComponent.h" compile="0" resource="0"
+      <FILE id="oQDoEA" name="InterfaceComponent.h" compile="0" resource="0"
             file="Source/Code/InterfaceComponent.h"/>
-      <FILE id="vx2ofy" name="Modularizer.cpp" compile="1" resource="0" file="Source/Code/Modularizer.cpp"/>
-      <FILE id="WvNLUD" name="Modularizer.h" compile="0" resource="0" file="Source/Code/Modularizer.h"/>
+      <FILE id="SIH3nE" name="Modularizer.cpp" compile="1" resource="0" file="Source/Code/Modularizer.cpp"/>
+      <FILE id="dHmaMh" name="Modularizer.h" compile="0" resource="0" file="Source/Code/Modularizer.h"/>
     </GROUP>
-    <GROUP id="{C3513A5E-CCAC-12BF-3BFC-D72DBF3D30FB}" name="Main">
-      <FILE id="cBt9vl" name="MainComponent.cpp" compile="1" resource="0"
+    <GROUP id="{5A74EAD4-F927-8DE3-FE34-7B7B4AA504A0}" name="Main">
+      <FILE id="bVl2mf" name="Main.cpp" compile="1" resource="0" file="Source/Main/Main.cpp"/>
+      <FILE id="UEwEe9" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/Main/MainComponent.cpp"/>
-      <FILE id="b1LI4l" name="MainComponent.h" compile="0" resource="0" file="Source/Main/MainComponent.h"/>
-      <FILE id="T0VnZK" name="Main.cpp" compile="1" resource="0" file="Source/Main/Main.cpp"/>
+      <FILE id="HanIz2" name="MainComponent.h" compile="0" resource="0" file="Source/Main/MainComponent.h"/>
     </GROUP>
   </MAINGROUP>
   <MODULES>
@@ -30,40 +30,7 @@
     <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0"/>
   </MODULES>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="Builds/MacOSX" juceFolder="C:\Users\UUO\Documents\Work\juce\modules">
-      <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" osxSDK="default" osxCompatibility="default" osxArchitecture="default"
-                       isDebug="1" optimisation="1" targetName="FileModularizer"/>
-        <CONFIGURATION name="Release" osxSDK="default" osxCompatibility="default" osxArchitecture="default"
-                       isDebug="0" optimisation="2" targetName="FileModularizer"/>
-      </CONFIGURATIONS>
-    </XCODE_MAC>
-    <VS2005 targetFolder="Builds/VisualStudio2005" juceFolder="C:\Users\UUO\Documents\Work\juce\modules">
-      <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" isDebug="1"
-                       optimisation="1" targetName="FileModularizer"/>
-        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" isDebug="0"
-                       optimisation="2" targetName="FileModularizer"/>
-      </CONFIGURATIONS>
-    </VS2005>
-    <VS2008 targetFolder="Builds/VisualStudio2008" juceFolder="C:\Users\UUO\Documents\Work\juce\modules">
-      <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" isDebug="1"
-                       optimisation="1" targetName="FileModularizer"/>
-        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" isDebug="0"
-                       optimisation="2" targetName="FileModularizer"/>
-      </CONFIGURATIONS>
-    </VS2008>
-    <VS2010 targetFolder="Builds/VisualStudio2010" juceFolder="C:\Users\UUO\Documents\Work\juce\modules">
-      <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="1" optimisation="1" targetName="FileModularizer"/>
-        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="0" optimisation="2" targetName="FileModularizer"/>
-      </CONFIGURATIONS>
-    </VS2010>
-    <VS2012 targetFolder="Builds/VisualStudio2012" juceFolder="C:\Users\UUO\Documents\Work\juce\modules"
-            toolset="v110_xp">
+    <VS2012 targetFolder="Builds/VisualStudio2012" juceFolder="..\juce\modules">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
                        isDebug="1" optimisation="1" targetName="FileModularizer"/>
@@ -71,20 +38,6 @@
                        isDebug="0" optimisation="2" targetName="FileModularizer"/>
       </CONFIGURATIONS>
     </VS2012>
-    <LINUX_MAKE targetFolder="Builds/Linux" juceFolder="C:\Users\UUO\Documents\Work\juce\modules">
-      <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" libraryPath="/usr/X11R6/lib/" isDebug="1" optimisation="1"
-                       targetName="FileModularizer"/>
-        <CONFIGURATION name="Release" libraryPath="/usr/X11R6/lib/" isDebug="0" optimisation="2"
-                       targetName="FileModularizer"/>
-      </CONFIGURATIONS>
-    </LINUX_MAKE>
-    <CODEBLOCKS targetFolder="Builds/CodeBlocks" juceFolder="C:\Users\UUO\Documents\Work\juce\modules">
-      <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="FileModularizer"/>
-        <CONFIGURATION name="Release" isDebug="0" optimisation="2" targetName="FileModularizer"/>
-      </CONFIGURATIONS>
-    </CODEBLOCKS>
   </EXPORTFORMATS>
   <JUCEOPTIONS JUCE_WEB_BROWSER="disabled"/>
 </JUCERPROJECT>

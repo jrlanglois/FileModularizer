@@ -145,10 +145,10 @@ void Modularizer::saveTo (const juce::File& destinationFolder,
                         fileShort = fileShort.substring (1);
 
                     data << spacer << "#ifndef " << guard << juce::newLine;
-                    data << spacer <<"    #include \"" << fileShort << juce::newLine;
-                    data << spacer <<"#endif " << guard << juce::newLine;
+                    data << spacer <<"    #include \"" << fileShort << "\"" << juce::newLine;
+                    data << spacer <<"#endif //" << guard << juce::newLine;
 
-                    if (i != (files.size() - 1))
+                    if (i != (files.size() - 1) && namespaceToUse.isNotEmpty())
                         data << juce::newLine;
                 }
             }
