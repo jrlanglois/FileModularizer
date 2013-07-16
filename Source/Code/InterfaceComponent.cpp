@@ -156,7 +156,7 @@ void InterfaceComponent::buttonClicked (juce::Button* buttonThatWasClicked)
             txtSourceFileFolder->setText (folder.getFullPathName().trim(), juce::sendNotification);
             txtDestinationFolder->setText (folder.getParentDirectory().getFullPathName().trim(), juce::sendNotification);
 
-            files = Modularizer (folder, true).getFiles();
+            files = Modulariser (folder, true).getFiles();
 
             fileListBox->setSelectedRows (juce::SparseSet<int>());
             fileListBox->updateContent();
@@ -168,17 +168,17 @@ void InterfaceComponent::buttonClicked (juce::Button* buttonThatWasClicked)
     }
     else if (buttonThatWasClicked == btnGenerate)
     {
-        const juce::String srcFolder = txtSourceFileFolder->getText().trim();
-        const juce::String destFolder = txtDestinationFolder->getText().trim();
+        const juce::String srcFolder (txtSourceFileFolder->getText().trim());
+        const juce::String destFolder (txtDestinationFolder->getText().trim());
 
         if (srcFolder.isNotEmpty()
             && destFolder.isNotEmpty()
             && juce::File::isAbsolutePath (srcFolder)
             && juce::File::isAbsolutePath (destFolder))
         {
-            Modularizer modularizer (files);
+            Modulariser modulariser (files);
 
-            modularizer.saveTo (juce::File (destFolder),
+            modulariser.saveTo (juce::File (destFolder),
                                 srcFolder,
                                 txtModuleFilename->getText().trim(),
                                 txtHeaderGuard->getText().trim(),
@@ -314,7 +314,7 @@ void InterfaceComponent::refresh()
         {
             txtDestinationFolder->setText (folder.getParentDirectory().getFullPathName().trim(), juce::sendNotification);
 
-            const juce::StringArray fileList = Modularizer (folder, true).getFiles();
+            const juce::StringArray fileList = Modulariser (folder, true).getFiles();
 
             if (fileList != files)
             {

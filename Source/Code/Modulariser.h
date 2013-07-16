@@ -1,17 +1,17 @@
-#ifndef JRL_MODULARIZER_H
-#define JRL_MODULARIZER_H
+#ifndef JRL_MODULARISER_H
+#define JRL_MODULARISER_H
 
 #include "JuceHeader.h"
 
-class Modularizer
+class Modulariser
 {
 public:
-    Modularizer (const juce::StringArray& files);
+    Modulariser (const juce::StringArray& files);
 
-    Modularizer (const juce::File& folder,
+    Modulariser (const juce::File& folder,
                  bool searchRecursively);
 
-    ~Modularizer();
+    ~Modulariser();
 
     //==============================================================================
     void copyAndfilterBadFiles (const juce::StringArray& files);
@@ -25,9 +25,9 @@ public:
     bool containsOldCStyleCodeFiles() const;
 
     //==============================================================================
-    inline juce::StringArray getFiles() const noexcept { return files; }
+    inline const juce::StringArray& getFiles() const noexcept { return files; }
 
-    juce::String getWildcards() const;
+    juce::String getWildcards() const noexcept;
 
 private:
     //==============================================================================
@@ -37,7 +37,7 @@ private:
     bool isFileValid (const juce::String& file);
 
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Modularizer)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Modulariser)
 };
 
-#endif //JRL_MODULARIZER_H
+#endif //JRL_MODULARISER_H

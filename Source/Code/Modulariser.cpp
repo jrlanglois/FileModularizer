@@ -1,11 +1,11 @@
-#include "Modularizer.h"
+#include "Modulariser.h"
 
-Modularizer::Modularizer (const juce::StringArray& f)
+Modulariser::Modulariser (const juce::StringArray& f)
 {
     copyAndfilterBadFiles (f);
 }
 
-Modularizer::Modularizer (const juce::File& folder,
+Modulariser::Modulariser (const juce::File& folder,
                           const bool searchRecursively)
 {
     if (folder.isDirectory())
@@ -26,17 +26,17 @@ Modularizer::Modularizer (const juce::File& folder,
     }
 }
 
-Modularizer::~Modularizer()
+Modulariser::~Modulariser()
 {
 }
 
 //==============================================================================
-juce::String Modularizer::getWildcards() const
+juce::String Modulariser::getWildcards() const noexcept
 {
     return "*.h;*.c;*.cpp;*.hpp";
 }
 
-bool Modularizer::isFileValid (const juce::String& f)
+bool Modulariser::isFileValid (const juce::String& f)
 {
     const juce::String wildcards (getWildcards().removeCharacters ("*"));
 
@@ -47,7 +47,7 @@ bool Modularizer::isFileValid (const juce::String& f)
     return false;
 }
 
-bool Modularizer::containsOldCStyleCodeFiles() const
+bool Modulariser::containsOldCStyleCodeFiles() const
 {
     for (int i = files.size(); --i >= 0;)
         if (juce::File (files[i]).hasFileExtension (".c"))
@@ -57,7 +57,7 @@ bool Modularizer::containsOldCStyleCodeFiles() const
 }
 
 //==============================================================================
-void Modularizer::copyAndfilterBadFiles (const juce::StringArray& f)
+void Modulariser::copyAndfilterBadFiles (const juce::StringArray& f)
 {
     files = f;
     files.removeDuplicates (true);
@@ -75,7 +75,7 @@ void Modularizer::copyAndfilterBadFiles (const juce::StringArray& f)
     jassert (files.size() > 0);
 }
 
-void Modularizer::saveTo (const juce::File& destinationFolder,
+void Modulariser::saveTo (const juce::File& destinationFolder,
                           const juce::String& sourceFolderToRemove,
                           const juce::String& moduleName,
                           const juce::String& headerGuard,
@@ -127,15 +127,15 @@ void Modularizer::saveTo (const juce::File& destinationFolder,
                     juce::ScopedPointer<juce::FileInputStream> guardFinder (file.createInputStream());
                     jassert (guardFinder != nullptr);
 
-                    juce::String code = guardFinder->readString();
+                    const juce::String code (guardFinder->readString());
                     const int startIndex = code.indexOf ("#ifndef ") + 8;
                     const int endIndex = startIndex + code.substring (startIndex).indexOf ("\n");
 
-                    const juce::String guard = code.substring (startIndex, endIndex)
-                                                   .trim()
-                                                   .removeCharacters (juce::newLine)
-                                                   .removeCharacters ("\n")
-                                                   .removeCharacters ("\r");
+                    const juce::String guard (code.substring (startIndex, endIndex)
+                                                  .trim()
+                                                  .removeCharacters (juce::newLine)
+                                                  .removeCharacters ("\n")
+                                                  .removeCharacters ("\r"));
 
                     juce::String fileShort = file.getFullPathName()
                                                  .replaceCharacters ("\\", "/")
@@ -145,7 +145,7 @@ void Modularizer::saveTo (const juce::File& destinationFolder,
                         fileShort = fileShort.substring (1);
 
                     data << spacer << "#ifndef " << guard << juce::newLine;
-                    data << spacer <<"    #include \"" << fileShort << "\"" << juce::newLine;
+                    data << spacer << "    #include \"" << fileShort << "\"" << juce::newLine;
                     data << spacer <<"#endif //" << guard << juce::newLine;
 
                     if (i != (files.size() - 1) && namespaceToUse.isNotEmpty())

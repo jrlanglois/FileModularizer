@@ -1,7 +1,7 @@
 #ifndef JRL_INTERFACE_COMPONENT_H
 #define JRL_INTERFACE_COMPONENT_H
 
-#include "Modularizer.h"
+#include "Modulariser.h"
 
 class InterfaceComponent : public juce::Component,
                            private juce::ListBoxModel,
