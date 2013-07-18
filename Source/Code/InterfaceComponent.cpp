@@ -147,7 +147,7 @@ void InterfaceComponent::buttonClicked (juce::Button* buttonThatWasClicked)
 {
     if (buttonThatWasClicked == btnBrowse)
     {
-        juce::FileChooser chooser ("Select the folder which contains the code files you want to modularize");
+        juce::FileChooser chooser ("Select the folder which contains the code files you want to modularise");
         
         if (chooser.browseForDirectory())
         {
@@ -244,7 +244,6 @@ void InterfaceComponent::textEditorFocusLost (juce::TextEditor& editor)
         startTimer (timerIntervalMS);
     }
 }
-
 
 void InterfaceComponent::timerCallback()
 {

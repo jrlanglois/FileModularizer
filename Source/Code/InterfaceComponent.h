@@ -10,14 +10,10 @@ class InterfaceComponent : public juce::Component,
                            private juce::Timer
 {
 public:
-    /**
-    * Constructor
-    */
+    /** Constructor */
     InterfaceComponent();
 
-    /**
-    * Destructor
-    */
+    /** Destructor */
     ~InterfaceComponent();
 
     //==============================================================================
