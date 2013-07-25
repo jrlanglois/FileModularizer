@@ -27,6 +27,8 @@ public:
     //==============================================================================
     inline const juce::StringArray& getFiles() const noexcept { return files; }
 
+    juce::String getHeaderWildcards() const noexcept;
+    juce::String getCPPWildcards() const noexcept;
     juce::String getWildcards() const noexcept;
 
 private:
@@ -34,7 +36,7 @@ private:
     juce::StringArray files;
 
     //==============================================================================
-    bool isFileValid (const juce::String& file);
+    bool isFileValid (const juce::String& file) const;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Modulariser)

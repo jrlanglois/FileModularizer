@@ -31,12 +31,22 @@ Modulariser::~Modulariser()
 }
 
 //==============================================================================
-juce::String Modulariser::getWildcards() const noexcept
+juce::String Modulariser::getHeaderWildcards() const noexcept
 {
-    return "*.h;*.c;*.cpp;*.hpp";
+    return "*.h;*.hxx";
 }
 
-bool Modulariser::isFileValid (const juce::String& f)
+juce::String Modulariser::getCPPWildcards() const noexcept
+{
+    return "*.c;*.cpp;*.cxx;*.hpp;";
+}
+
+juce::String Modulariser::getWildcards() const noexcept
+{
+    return getHeaderWildcards() + ";" + getCPPWildcards();
+}
+
+bool Modulariser::isFileValid (const juce::String& f) const
 {
     const juce::String wildcards (getWildcards().removeCharacters ("*"));
 
@@ -60,17 +70,12 @@ bool Modulariser::containsOldCStyleCodeFiles() const
 void Modulariser::copyAndfilterBadFiles (const juce::StringArray& f)
 {
     files = f;
-    files.removeDuplicates (true);
     files.removeEmptyStrings();
+    files.removeDuplicates (true);
 
-    for (int i = 0; i < files.size(); ++i)
-    {
+    for (int i = files.size(); -i >= 0;)
         if (! isFileValid (files[i]))
-        {
             files.remove (i);
-            --i;
-        }
-    }
 
     jassert (files.size() > 0);
 }
@@ -89,6 +94,7 @@ void Modulariser::saveTo (const juce::File& destinationFolder,
         const juce::String moduleNameToUse (moduleName.trim());
         const juce::String headerGuardToUse (headerGuard.toUpperCase().trim());
         const juce::String namespaceToUse (desiredNamespace.trim());
+        const juce::String implementationWildcards (getCPPWildcards());
 
         const juce::File moduleHeader (destinationFolder.getFullPathName() + "/" + moduleNameToUse + ".h");
         moduleHeader.deleteFile();
@@ -98,24 +104,24 @@ void Modulariser::saveTo (const juce::File& destinationFolder,
         const int numPathCharsToRemove = sourceFolderToRemove.length() - (endsWithSlash ? 1 : 0);
 
         const int numSpaces = desiredNamespace.isEmpty() ? 0 : 4;
-        juce::String spacer (juce::String::empty);
+        juce::String spacer;
 
         for (int i = numSpaces; --i >= 0;)
             spacer += " ";
 
         { //Write the header file contents:
-            juce::String data (juce::String::empty);
+            juce::String data;
 
-            data << "#ifndef " << headerGuardToUse << juce::newLine;
-            data << "#define " << headerGuardToUse << juce::newLine;
-            data << juce::newLine;
-            data << juce::newLine;
-            data << juce::newLine;
+            data << "#ifndef " << headerGuardToUse << juce::newLine
+                 << "#define " << headerGuardToUse << juce::newLine
+                 << juce::newLine
+                 << juce::newLine
+                 << juce::newLine;
 
             if (namespaceToUse.isNotEmpty())
             {
-                data << "namespace " << namespaceToUse << juce::newLine;
-                data << "{" << juce::newLine;
+                data << "namespace " << namespaceToUse << juce::newLine
+                     << "{" << juce::newLine;
             }
 
             for (int i = 0; i < files.size(); ++i)
@@ -144,9 +150,9 @@ void Modulariser::saveTo (const juce::File& destinationFolder,
                     if (fileShort.startsWith ("/"))
                         fileShort = fileShort.substring (1);
 
-                    data << spacer << "#ifndef " << guard << juce::newLine;
-                    data << spacer << "    #include \"" << fileShort << "\"" << juce::newLine;
-                    data << spacer <<"#endif //" << guard << juce::newLine;
+                    data << spacer << "#ifndef " << guard << juce::newLine
+                         << spacer << "    #include \"" << fileShort << "\"" << juce::newLine
+                         << spacer << "#endif //" << guard << juce::newLine;
 
                     if (i != (files.size() - 1) && namespaceToUse.isNotEmpty())
                         data << juce::newLine;
@@ -183,7 +189,7 @@ void Modulariser::saveTo (const juce::File& destinationFolder,
             {
                 const juce::File file (files[i]);
 
-                if (file.hasFileExtension (".c;.cpp;.hpp"))
+                if (file.hasFileExtension (implementationWildcards))
                 {
                     juce::String fileShort = file.getFullPathName()
                                                  .replaceCharacters ("\\", "/")
