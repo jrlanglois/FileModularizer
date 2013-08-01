@@ -4,19 +4,19 @@
               bundleIdentifier="com.jrlanglois.FileModularizer" jucerVersion="3.1.0"
               companyName="Jo&#235;l R. Langlois">
   <MAINGROUP id="QhXoUH" name="FileModularizer">
-    <GROUP id="{42C2EEC1-BDD2-2E1F-2D4B-02A37A710D55}" name="Code">
-      <FILE id="L7h40v" name="InterfaceComponent.cpp" compile="1" resource="0"
-            file="Source/Code/InterfaceComponent.cpp"/>
-      <FILE id="oQDoEA" name="InterfaceComponent.h" compile="0" resource="0"
-            file="Source/Code/InterfaceComponent.h"/>
-      <FILE id="SIH3nE" name="Modularizer.cpp" compile="1" resource="0" file="Source/Code/Modularizer.cpp"/>
-      <FILE id="dHmaMh" name="Modularizer.h" compile="0" resource="0" file="Source/Code/Modularizer.h"/>
-    </GROUP>
-    <GROUP id="{5A74EAD4-F927-8DE3-FE34-7B7B4AA504A0}" name="Main">
-      <FILE id="bVl2mf" name="Main.cpp" compile="1" resource="0" file="Source/Main/Main.cpp"/>
-      <FILE id="UEwEe9" name="MainComponent.cpp" compile="1" resource="0"
+    <GROUP id="{B2777D8A-53F1-E9E9-FBD7-13A303D323D7}" name="Main">
+      <FILE id="RXDUR3" name="Main.cpp" compile="1" resource="0" file="Source/Main/Main.cpp"/>
+      <FILE id="LR9oIO" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/Main/MainComponent.cpp"/>
-      <FILE id="HanIz2" name="MainComponent.h" compile="0" resource="0" file="Source/Main/MainComponent.h"/>
+      <FILE id="Skjck6" name="MainComponent.h" compile="0" resource="0" file="Source/Main/MainComponent.h"/>
+    </GROUP>
+    <GROUP id="{DA7FD86D-054E-D9F8-9F23-2915636AE7E7}" name="Code">
+      <FILE id="UtB640" name="InterfaceComponent.cpp" compile="1" resource="0"
+            file="Source/Code/InterfaceComponent.cpp"/>
+      <FILE id="RaeRHe" name="InterfaceComponent.h" compile="0" resource="0"
+            file="Source/Code/InterfaceComponent.h"/>
+      <FILE id="jeBXNB" name="Modulariser.cpp" compile="1" resource="0" file="Source/Code/Modulariser.cpp"/>
+      <FILE id="tbdRbH" name="Modulariser.h" compile="0" resource="0" file="Source/Code/Modulariser.h"/>
     </GROUP>
   </MAINGROUP>
   <MODULES>
@@ -38,6 +38,14 @@
                        isDebug="0" optimisation="2" targetName="FileModularizer"/>
       </CONFIGURATIONS>
     </VS2012>
+    <XCODE_MAC targetFolder="Builds/MacOSX" juceFolder="..\juce\modules">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" osxSDK="default" osxCompatibility="default" osxArchitecture="default"
+                       isDebug="1" optimisation="1" targetName="FileModularizer"/>
+        <CONFIGURATION name="Release" osxSDK="default" osxCompatibility="default" osxArchitecture="default"
+                       isDebug="0" optimisation="2" targetName="FileModularizer"/>
+      </CONFIGURATIONS>
+    </XCODE_MAC>
   </EXPORTFORMATS>
   <JUCEOPTIONS JUCE_WEB_BROWSER="disabled"/>
 </JUCERPROJECT>
