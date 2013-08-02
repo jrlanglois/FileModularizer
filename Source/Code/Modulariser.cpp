@@ -94,7 +94,8 @@ void Modulariser::saveTo (const juce::File& destinationFolder,
         const juce::String moduleNameToUse (moduleName.trim());
         const juce::String headerGuardToUse (headerGuard.toUpperCase().trim());
         const juce::String namespaceToUse (desiredNamespace.trim());
-        const juce::String implementationWildcards (getCPPWildcards());
+        const juce::String headerWildcards (getHeaderWildcards().removeCharacters ("*"));
+        const juce::String implementationWildcards (getCPPWildcards().removeCharacters ("*"));
 
         const juce::File moduleHeader (destinationFolder.getFullPathName() + "/" + moduleNameToUse + ".h");
         moduleHeader.deleteFile();
@@ -128,7 +129,7 @@ void Modulariser::saveTo (const juce::File& destinationFolder,
             {
                 const juce::File file (files[i]);
 
-                if (file.hasFileExtension (".h"))
+                if (file.hasFileExtension (headerWildcards))
                 {
                     juce::ScopedPointer<juce::FileInputStream> guardFinder (file.createInputStream());
                     jassert (guardFinder != nullptr);
