@@ -38,7 +38,7 @@ juce::String Modulariser::getHeaderWildcards() const noexcept
 
 juce::String Modulariser::getCPPWildcards() const noexcept
 {
-    return "*.c;*.cpp;*.cxx;*.hpp;";
+    return "*.c;*.cpp;*.cxx;*.hpp;*.mm";
 }
 
 juce::String Modulariser::getWildcards() const noexcept
