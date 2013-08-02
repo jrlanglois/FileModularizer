@@ -49,28 +49,31 @@ private:
     juce::StringArray files;
 
     //==============================================================================
-    juce::ScopedPointer<juce::GroupComponent> grpClassConfiguration;
-    juce::ScopedPointer<juce::ListBox> fileListBox;
-    juce::ScopedPointer<juce::TextButton> btnGenerate;
-    juce::ScopedPointer<juce::TextButton> btnBrowse;
-    juce::ScopedPointer<juce::TextButton> btnRefresh;
-    juce::ScopedPointer<juce::Label> lblFileName;
-    juce::ScopedPointer<juce::Label> lblHeaderGuard;
-    juce::ScopedPointer<juce::Label> lblNamespace;
-    juce::ScopedPointer<juce::Label> lblDestinationFolder;
-    juce::ScopedPointer<juce::TextEditor> txtSourceFileFolder;
-    juce::ScopedPointer<juce::TextEditor> txtModuleFilename;
-    juce::ScopedPointer<juce::TextEditor> txtHeaderGuard;
-    juce::ScopedPointer<juce::TextEditor> txtNamespace;
-    juce::ScopedPointer<juce::TextEditor> txtDestinationFolder;
+    juce::GroupComponent grpClassConfiguration;
+    juce::ListBox fileListBox;
+    juce::TextButton btnGenerate;
+    juce::TextButton btnBrowse;
+    juce::TextButton btnRefresh;
+    juce::Label lblFileName;
+    juce::Label lblHeaderGuard;
+    juce::Label lblNamespace;
+    juce::Label lblDestinationFolder;
+    juce::TextEditor txtSourceFileFolder;
+    juce::TextEditor txtModuleFilename;
+    juce::TextEditor txtHeaderGuard;
+    juce::TextEditor txtNamespace;
+    juce::TextEditor txtDestinationFolder;
 
     juce::Array<juce::Label*> labelList;
 
     //==============================================================================
-    juce::Label* addLabel (const juce::String& text = juce::String::empty,
-                           const juce::String& tooltip = juce::String::empty);
+    void addLabel (juce::Label& label,
+                   const juce::String& text,
+                   const juce::String& tooltip);
 
-    juce::TextEditor* addTextEditor (const juce::String& text = juce::String::empty);
+    void addTextEditor (juce::TextEditor& editor,
+                        const juce::String& text = juce::String::empty,
+                        bool addListener = false);
 
     int getLargestTextWidth() const;
 
