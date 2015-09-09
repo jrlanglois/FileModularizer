@@ -31,6 +31,11 @@
 #define JUCE_MODULE_AVAILABLE_juce_gui_extra            1
 
 //==============================================================================
+#ifndef    JUCE_STANDALONE_APPLICATION
+ #define   JUCE_STANDALONE_APPLICATION 1
+#endif
+
+//==============================================================================
 // juce_core flags:
 
 #ifndef    JUCE_FORCE_DEBUG
@@ -51,6 +56,10 @@
 
 #ifndef    JUCE_INCLUDE_ZLIB_CODE
  //#define JUCE_INCLUDE_ZLIB_CODE
+#endif
+
+#ifndef    JUCE_USE_CURL
+ //#define JUCE_USE_CURL
 #endif
 
 //==============================================================================
@@ -88,6 +97,10 @@
 
 #ifndef    JUCE_WEB_BROWSER
  #define   JUCE_WEB_BROWSER 0
+#endif
+
+#ifndef    JUCE_ENABLE_LIVE_CONSTANT_EDITOR
+ //#define JUCE_ENABLE_LIVE_CONSTANT_EDITOR
 #endif
 
 

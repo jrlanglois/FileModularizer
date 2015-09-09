@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="FileModularizer">
-      <UniqueIdentifier>{6CD01AD4-E23D-3A56-FB68-BD907199B397}</UniqueIdentifier>
+    <Filter Include="FileModulariser">
+      <UniqueIdentifier>{CCADCE2C-60F3-F7FD-25FB-365D6D614A0D}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FileModularizer\Main">
-      <UniqueIdentifier>{B8D1B8AE-77CD-62E6-0502-2A98B363C1F1}</UniqueIdentifier>
+    <Filter Include="FileModulariser\Main">
+      <UniqueIdentifier>{DA3427ED-AF74-798F-6ADA-216200E204E1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FileModularizer\Code">
-      <UniqueIdentifier>{60C42852-2E03-C677-13A9-57332C7085EC}</UniqueIdentifier>
+    <Filter Include="FileModulariser\Code">
+      <UniqueIdentifier>{D709AFD6-6D23-D94B-240A-3D663E87B212}</UniqueIdentifier>
     </Filter>
     <Filter Include="Juce Modules">
       <UniqueIdentifier>{422C46B7-0467-2DB0-BF3C-16DFCAFD69AC}</UniqueIdentifier>
@@ -215,16 +215,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Main\Main.cpp">
-      <Filter>FileModularizer\Main</Filter>
+      <Filter>FileModulariser\Main</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Main\MainComponent.cpp">
-      <Filter>FileModularizer\Main</Filter>
+      <Filter>FileModulariser\Main</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Code\InterfaceComponent.cpp">
-      <Filter>FileModularizer\Code</Filter>
+      <Filter>FileModulariser\Code</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Code\Modulariser.cpp">
-      <Filter>FileModularizer\Code</Filter>
+      <Filter>FileModulariser\Code</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\juce\modules\juce_core\text\juce_Base64.cpp">
       <Filter>Juce Modules\juce_core\text</Filter>
@@ -1150,13 +1150,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Main\MainComponent.h">
-      <Filter>FileModularizer\Main</Filter>
+      <Filter>FileModulariser\Main</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Code\InterfaceComponent.h">
-      <Filter>FileModularizer\Code</Filter>
+      <Filter>FileModulariser\Code</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Code\Modulariser.h">
-      <Filter>FileModularizer\Code</Filter>
+      <Filter>FileModulariser\Code</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\juce\modules\juce_core\text\juce_Base64.h">
       <Filter>Juce Modules\juce_core\text</Filter>

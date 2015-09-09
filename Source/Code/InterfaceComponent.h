@@ -13,33 +13,30 @@ public:
     /** Constructor */
     InterfaceComponent();
 
-    /** Destructor */
-    ~InterfaceComponent();
-
     //==============================================================================
     /** @internal */
-    void paint (juce::Graphics& g);
+    void paint (juce::Graphics& g) override;
     /** @internal */
-    void resized();
+    void resized() override;
     /** @internal */
-    void deleteKeyPressed (int lastRowSelected);
+    void deleteKeyPressed (int lastRowSelected) override;
     /** @internal */
-    void backgroundClicked();
+    void backgroundClicked (const juce::MouseEvent&) override;
     /** @internal */
-    void buttonClicked (juce::Button* buttonThatWasClicked);
+    void buttonClicked (juce::Button* buttonThatWasClicked) override;
     /** @internal */
-    int getNumRows();
+    int getNumRows() override;
     /** @internal */
     void paintListBoxItem (int rowNumber,
                            juce::Graphics& g,
                            int width, int height,
-                           bool rowIsSelected);
+                           bool rowIsSelected) override;
     /** @internal */
-    void textEditorTextChanged (juce::TextEditor& editor);
+    void textEditorTextChanged (juce::TextEditor& editor) override;
     /** @internal */
-    void textEditorFocusLost (juce::TextEditor& editor);
+    void textEditorFocusLost (juce::TextEditor& editor) override;
     /** @internal */
-    void timerCallback();
+    void timerCallback() override;
 
     //==============================================================================
     static const int timerIntervalMS = 8000;

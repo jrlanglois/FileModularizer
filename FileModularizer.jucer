@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="MTyUcZ" name="FileModularizer" projectType="guiapp" version="1.0.0"
-              bundleIdentifier="com.jrlanglois.FileModularizer" jucerVersion="3.1.0"
-              companyName="Jo&#235;l R. Langlois">
-  <MAINGROUP id="QhXoUH" name="FileModularizer">
+<JUCERPROJECT id="MTyUcZ" name="FileModulariser" projectType="guiapp" version="1.0.0"
+              bundleIdentifier="com.jrlanglois.FileModulariser" jucerVersion="3.2.0"
+              companyName="Jo&#235;l R. Langlois" includeBinaryInAppConfig="1">
+  <MAINGROUP id="QhXoUH" name="FileModulariser">
     <GROUP id="{B2777D8A-53F1-E9E9-FBD7-13A303D323D7}" name="Main">
       <FILE id="RXDUR3" name="Main.cpp" compile="1" resource="0" file="Source/Main/Main.cpp"/>
       <FILE id="LR9oIO" name="MainComponent.cpp" compile="1" resource="0"
@@ -20,32 +20,156 @@
     </GROUP>
   </MAINGROUP>
   <MODULES>
-    <MODULE id="juce_gui_audio" showAllCode="1" useLocalCopy="1"/>
     <MODULE id="juce_core" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_events" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_gui_audio" showAllCode="1" useLocalCopy="1"/>
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0"/>
   </MODULES>
   <EXPORTFORMATS>
-    <VS2012 targetFolder="Builds/VisualStudio2012" juceFolder="..\juce\modules">
+    <VS2008 targetFolder="Builds/VisualStudio2008">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" isDebug="1"
+                       optimisation="1" targetName="FileModularizer"/>
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" isDebug="0"
+                       optimisation="3" targetName="FileModularizer"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_gui_extra" path="../juce/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../juce/modules"/>
+        <MODULEPATH id="juce_gui_audio" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_graphics" path="../juce/modules"/>
+        <MODULEPATH id="juce_events" path="../juce/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../juce/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../juce/modules"/>
+        <MODULEPATH id="juce_core" path="../juce/modules"/>
+      </MODULEPATHS>
+    </VS2008>
+    <VS2010 targetFolder="Builds/VisualStudio2010">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="1" optimisation="1" targetName="FileModularizer"/>
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="0" optimisation="3" targetName="FileModularizer"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_gui_extra" path="../juce/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../juce/modules"/>
+        <MODULEPATH id="juce_gui_audio" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_graphics" path="../juce/modules"/>
+        <MODULEPATH id="juce_events" path="../juce/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../juce/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../juce/modules"/>
+        <MODULEPATH id="juce_core" path="../juce/modules"/>
+      </MODULEPATHS>
+    </VS2010>
+    <VS2012 targetFolder="Builds/VisualStudio2012">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
                        isDebug="1" optimisation="1" targetName="FileModularizer"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
                        isDebug="0" optimisation="2" targetName="FileModularizer"/>
       </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_gui_extra" path="../juce/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../juce/modules"/>
+        <MODULEPATH id="juce_gui_audio" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_graphics" path="../juce/modules"/>
+        <MODULEPATH id="juce_events" path="../juce/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../juce/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../juce/modules"/>
+        <MODULEPATH id="juce_core" path="../juce/modules"/>
+      </MODULEPATHS>
     </VS2012>
-    <XCODE_MAC targetFolder="Builds/MacOSX" juceFolder="..\juce\modules">
+    <VS2013 targetFolder="Builds/VisualStudio2013">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="1" optimisation="1" targetName="FileModularizer"/>
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="0" optimisation="3" targetName="FileModularizer"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_gui_extra" path="../juce/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../juce/modules"/>
+        <MODULEPATH id="juce_gui_audio" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_graphics" path="../juce/modules"/>
+        <MODULEPATH id="juce_events" path="../juce/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../juce/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../juce/modules"/>
+        <MODULEPATH id="juce_core" path="../juce/modules"/>
+      </MODULEPATHS>
+    </VS2013>
+    <XCODE_MAC targetFolder="Builds/MacOSX">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" osxSDK="default" osxCompatibility="default" osxArchitecture="default"
                        isDebug="1" optimisation="1" targetName="FileModularizer"/>
         <CONFIGURATION name="Release" osxSDK="default" osxCompatibility="default" osxArchitecture="default"
                        isDebug="0" optimisation="2" targetName="FileModularizer"/>
       </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_gui_extra" path="../juce/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../juce/modules"/>
+        <MODULEPATH id="juce_gui_audio" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_graphics" path="../juce/modules"/>
+        <MODULEPATH id="juce_events" path="../juce/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../juce/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../juce/modules"/>
+        <MODULEPATH id="juce_core" path="../juce/modules"/>
+      </MODULEPATHS>
     </XCODE_MAC>
+    <CODEBLOCKS_WINDOWS targetFolder="Builds/CodeBlocksWindows">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="FileModularizer"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="FileModularizer"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_gui_extra" path="../juce/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../juce/modules"/>
+        <MODULEPATH id="juce_gui_audio" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_graphics" path="../juce/modules"/>
+        <MODULEPATH id="juce_events" path="../juce/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../juce/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../juce/modules"/>
+        <MODULEPATH id="juce_core" path="../juce/modules"/>
+      </MODULEPATHS>
+    </CODEBLOCKS_WINDOWS>
+    <CODEBLOCKS_LINUX targetFolder="Builds/CodeBlocksLinux">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="FileModularizer"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="FileModularizer"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_gui_extra" path="../juce/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../juce/modules"/>
+        <MODULEPATH id="juce_gui_audio" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_graphics" path="../juce/modules"/>
+        <MODULEPATH id="juce_events" path="../juce/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../juce/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../juce/modules"/>
+        <MODULEPATH id="juce_core" path="../juce/modules"/>
+      </MODULEPATHS>
+    </CODEBLOCKS_LINUX>
+    <LINUX_MAKE targetFolder="Builds/LinuxMakefile">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" libraryPath="/usr/X11R6/lib/" isDebug="1" optimisation="1"
+                       targetName="FileModularizer"/>
+        <CONFIGURATION name="Release" libraryPath="/usr/X11R6/lib/" isDebug="0" optimisation="3"
+                       targetName="FileModularizer"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_gui_extra" path="../juce/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../juce/modules"/>
+        <MODULEPATH id="juce_gui_audio" path="JuceLibraryCode/modules"/>
+        <MODULEPATH id="juce_graphics" path="../juce/modules"/>
+        <MODULEPATH id="juce_events" path="../juce/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../juce/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../juce/modules"/>
+        <MODULEPATH id="juce_core" path="../juce/modules"/>
+      </MODULEPATHS>
+    </LINUX_MAKE>
   </EXPORTFORMATS>
   <JUCEOPTIONS JUCE_WEB_BROWSER="disabled"/>
 </JUCERPROJECT>

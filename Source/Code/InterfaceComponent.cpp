@@ -50,10 +50,6 @@ InterfaceComponent::InterfaceComponent()
     startTimer (timerIntervalMS);
 }
 
-InterfaceComponent::~InterfaceComponent()
-{
-}
-
 //==============================================================================
 void InterfaceComponent::paint (juce::Graphics& g)
 {
@@ -127,7 +123,7 @@ void InterfaceComponent::deleteKeyPressed (const int /*lastRowSelected*/)
     fileListBox.updateContent();
 }
 
-void InterfaceComponent::backgroundClicked()
+void InterfaceComponent::backgroundClicked (const juce::MouseEvent&)
 {
     fileListBox.setSelectedRows (juce::SparseSet<int>());
 }

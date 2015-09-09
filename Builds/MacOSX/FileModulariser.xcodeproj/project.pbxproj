@@ -708,7 +708,7 @@
 					35A1537B707A1A4E9A31B8BC, ); name = Code; sourceTree = "<group>"; };
 		2E82179D2671B6DD8C997637 = {isa = PBXGroup; children = (
 					AAB968CC4A637CDFF106B2D3,
-					736762CDA46CF6B9ABE49860, ); name = FileModularizer; sourceTree = "<group>"; };
+					736762CDA46CF6B9ABE49860, ); name = FileModulariser; sourceTree = "<group>"; };
 		4BC1DA85BC71621CD6E84DE3 = {isa = PBXGroup; children = (
 					CBEA07BBE143BAB3837BF7C2,
 					BED11FAA4865156D5A06470D,
@@ -1619,7 +1619,7 @@
 		F81A62296EA3B5FBE3FC49F4 = {isa = PBXNativeTarget; buildConfigurationList = 2A2A3AB8EFA9773C176FCDC4; buildPhases = (
 					4B0246966ACD983EBEA5DDD5,
 					107CC832561631820597C788,
-					31F7B88B23C4567A9034896A, ); buildRules = ( ); dependencies = ( ); name = FileModularizer; productName = FileModularizer; productReference = 05430BB506F07A8140506A08; productInstallPath = "$(HOME)/Applications"; productType = "com.apple.product-type.application"; };
+					31F7B88B23C4567A9034896A, ); buildRules = ( ); dependencies = ( ); name = FileModulariser; productName = FileModulariser; productReference = 05430BB506F07A8140506A08; productInstallPath = "$(HOME)/Applications"; productType = "com.apple.product-type.application"; };
 		DEE0F29BECE7FB3A90697137 = {isa = PBXProject; buildConfigurationList = C01194631673FB90C3F05BFF; attributes = { LastUpgradeCheck = 0440; }; compatibilityVersion = "Xcode 3.2"; hasScannedForEncodings = 0; mainGroup = FC8DA54C16E15E133A627DC4; projectDirPath = ""; projectRoot = ""; targets = ( F81A62296EA3B5FBE3FC49F4 ); };
 	};
 	rootObject = DEE0F29BECE7FB3A90697137;

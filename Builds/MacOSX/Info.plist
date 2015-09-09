@@ -8,9 +8,9 @@
     <key>CFBundleIconFile</key>
     <string></string>
     <key>CFBundleIdentifier</key>
-    <string>com.jrlanglois.FileModularizer</string>
+    <string>com.jrlanglois.FileModulariser</string>
     <key>CFBundleName</key>
-    <string>FileModularizer</string>
+    <string>FileModulariser</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleSignature</key>

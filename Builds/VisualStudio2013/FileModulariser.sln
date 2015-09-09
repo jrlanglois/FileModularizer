@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2013
+Project("{C2130C88-B71A-1913-5EC3-ECC0611CD276}") = "FileModulariser", "FileModulariser.vcxproj", "{B4DA7A91-3E1F-33E1-F99E-ED3AC431393C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4DA7A91-3E1F-33E1-F99E-ED3AC431393C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B4DA7A91-3E1F-33E1-F99E-ED3AC431393C}.Debug|Win32.Build.0 = Debug|Win32
+		{B4DA7A91-3E1F-33E1-F99E-ED3AC431393C}.Release|Win32.ActiveCfg = Release|Win32
+		{B4DA7A91-3E1F-33E1-F99E-ED3AC431393C}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
