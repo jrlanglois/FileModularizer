@@ -21,7 +21,7 @@ ifeq ($(CONFIG),Debug)
   CPPFLAGS := $(DEPFLAGS) -D "LINUX=1" -D "DEBUG=1" -D "_DEBUG=1" -D "JUCER_LINUX_MAKE_6D53C8B4=1" -D "JUCE_APP_VERSION=1.0.0" -D "JUCE_APP_VERSION_HEX=0x10000" -I /usr/include -I /usr/include/freetype2 -I ../../JuceLibraryCode -I ../../../juce/modules
   CFLAGS += $(CPPFLAGS) $(TARGET_ARCH) -g -ggdb -O0
   CXXFLAGS += $(CFLAGS) -std=c++11
-  LDFLAGS += $(TARGET_ARCH) -L$(BINDIR) -L$(LIBDIR) -L/usr/X11R6/lib/ -lX11 -lXext -lXinerama -ldl -lfreetype -lpthread -lrt 
+  LDFLAGS += $(TARGET_ARCH) -L$(BINDIR) -L$(LIBDIR) -L/usr/X11R6/lib/ -lX11 -lXext -lXinerama -lasound -ldl -lfreetype -lpthread -lrt 
 
   TARGET := FileModularizer
   BLDCMD = $(CXX) -o $(OUTDIR)/$(TARGET) $(OBJECTS) $(LDFLAGS) $(RESOURCES) $(TARGET_ARCH)
@@ -41,7 +41,7 @@ ifeq ($(CONFIG),Release)
   CPPFLAGS := $(DEPFLAGS) -D "LINUX=1" -D "NDEBUG=1" -D "JUCER_LINUX_MAKE_6D53C8B4=1" -D "JUCE_APP_VERSION=1.0.0" -D "JUCE_APP_VERSION_HEX=0x10000" -I /usr/include -I /usr/include/freetype2 -I ../../JuceLibraryCode -I ../../../juce/modules
   CFLAGS += $(CPPFLAGS) $(TARGET_ARCH) -O3
   CXXFLAGS += $(CFLAGS) -std=c++11
-  LDFLAGS += $(TARGET_ARCH) -L$(BINDIR) -L$(LIBDIR) -fvisibility=hidden -L/usr/X11R6/lib/ -lX11 -lXext -lXinerama -ldl -lfreetype -lpthread -lrt 
+  LDFLAGS += $(TARGET_ARCH) -L$(BINDIR) -L$(LIBDIR) -fvisibility=hidden -L/usr/X11R6/lib/ -lX11 -lXext -lXinerama -lasound -ldl -lfreetype -lpthread -lrt 
 
   TARGET := FileModularizer
   BLDCMD = $(CXX) -o $(OUTDIR)/$(TARGET) $(OBJECTS) $(LDFLAGS) $(RESOURCES) $(TARGET_ARCH)
@@ -53,6 +53,9 @@ OBJECTS := \
   $(OBJDIR)/MainComponent_d6b303d7.o \
   $(OBJDIR)/InterfaceComponent_983c5ca7.o \
   $(OBJDIR)/Modulariser_b7103f28.o \
+  $(OBJDIR)/juce_audio_basics_5460bccb.o \
+  $(OBJDIR)/juce_audio_devices_44d00ac9.o \
+  $(OBJDIR)/juce_audio_formats_73515469.o \
   $(OBJDIR)/juce_core_5f5a3bad.o \
   $(OBJDIR)/juce_cryptography_55e5c007.o \
   $(OBJDIR)/juce_data_structures_7e517fa9.o \
@@ -96,6 +99,21 @@ $(OBJDIR)/InterfaceComponent_983c5ca7.o: ../../Source/Code/InterfaceComponent.cp
 $(OBJDIR)/Modulariser_b7103f28.o: ../../Source/Code/Modulariser.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling Modulariser.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/juce_audio_basics_5460bccb.o: ../../../juce/modules/juce_audio_basics/juce_audio_basics.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling juce_audio_basics.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/juce_audio_devices_44d00ac9.o: ../../../juce/modules/juce_audio_devices/juce_audio_devices.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling juce_audio_devices.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/juce_audio_formats_73515469.o: ../../../juce/modules/juce_audio_formats/juce_audio_formats.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling juce_audio_formats.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/juce_core_5f5a3bad.o: ../../../juce/modules/juce_core/juce_core.cpp
