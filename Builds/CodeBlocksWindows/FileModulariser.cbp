@@ -128,6 +128,42 @@
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
+    <Unit filename="../../../juce/modules/juce_audio_basics/effects/juce_Decibels.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../../juce/modules/juce_audio_basics/effects/juce_FFT.cpp">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../../juce/modules/juce_audio_basics/effects/juce_FFT.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../../juce/modules/juce_audio_basics/effects/juce_IIRFilter.cpp">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../../juce/modules/juce_audio_basics/effects/juce_IIRFilter.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../../juce/modules/juce_audio_basics/effects/juce_LagrangeInterpolator.cpp">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../../juce/modules/juce_audio_basics/effects/juce_LagrangeInterpolator.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../../juce/modules/juce_audio_basics/effects/juce_LinearSmoothedValue.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../../juce/modules/juce_audio_basics/effects/juce_Reverb.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
     <Unit filename="../../../juce/modules/juce_audio_basics/midi/juce_MidiBuffer.cpp">
       <Option compile="0"/>
       <Option link="0"/>
@@ -168,35 +204,83 @@
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
-    <Unit filename="../../../juce/modules/juce_audio_basics/effects/juce_Decibels.h">
+    <Unit filename="../../../juce/modules/juce_audio_basics/midi/juce_MidiRPN.cpp">
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
-    <Unit filename="../../../juce/modules/juce_audio_basics/effects/juce_FFT.cpp">
+    <Unit filename="../../../juce/modules/juce_audio_basics/midi/juce_MidiRPN.h">
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
-    <Unit filename="../../../juce/modules/juce_audio_basics/effects/juce_FFT.h">
+    <Unit filename="../../../juce/modules/juce_audio_basics/mpe/juce_MPEInstrument.cpp">
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
-    <Unit filename="../../../juce/modules/juce_audio_basics/effects/juce_IIRFilter.cpp">
+    <Unit filename="../../../juce/modules/juce_audio_basics/mpe/juce_MPEInstrument.h">
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
-    <Unit filename="../../../juce/modules/juce_audio_basics/effects/juce_IIRFilter.h">
+    <Unit filename="../../../juce/modules/juce_audio_basics/mpe/juce_MPEMessages.cpp">
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
-    <Unit filename="../../../juce/modules/juce_audio_basics/effects/juce_LagrangeInterpolator.cpp">
+    <Unit filename="../../../juce/modules/juce_audio_basics/mpe/juce_MPEMessages.h">
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
-    <Unit filename="../../../juce/modules/juce_audio_basics/effects/juce_LagrangeInterpolator.h">
+    <Unit filename="../../../juce/modules/juce_audio_basics/mpe/juce_MPENote.cpp">
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
-    <Unit filename="../../../juce/modules/juce_audio_basics/effects/juce_Reverb.h">
+    <Unit filename="../../../juce/modules/juce_audio_basics/mpe/juce_MPENote.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../../juce/modules/juce_audio_basics/mpe/juce_MPESynthesiser.cpp">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../../juce/modules/juce_audio_basics/mpe/juce_MPESynthesiser.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../../juce/modules/juce_audio_basics/mpe/juce_MPESynthesiserBase.cpp">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../../juce/modules/juce_audio_basics/mpe/juce_MPESynthesiserBase.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../../juce/modules/juce_audio_basics/mpe/juce_MPESynthesiserVoice.cpp">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../../juce/modules/juce_audio_basics/mpe/juce_MPESynthesiserVoice.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../../juce/modules/juce_audio_basics/mpe/juce_MPEValue.cpp">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../../juce/modules/juce_audio_basics/mpe/juce_MPEValue.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../../juce/modules/juce_audio_basics/mpe/juce_MPEZone.cpp">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../../juce/modules/juce_audio_basics/mpe/juce_MPEZone.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../../juce/modules/juce_audio_basics/mpe/juce_MPEZoneLayout.cpp">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../../juce/modules/juce_audio_basics/mpe/juce_MPEZoneLayout.h">
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
@@ -720,6 +804,10 @@
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
+    <Unit filename="../../../juce/modules/juce_core/maths/juce_StatisticsAccumulator.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
     <Unit filename="../../../juce/modules/juce_core/memory/juce_Atomic.h">
       <Option compile="0"/>
       <Option link="0"/>
@@ -809,6 +897,10 @@
       <Option link="0"/>
     </Unit>
     <Unit filename="../../../juce/modules/juce_core/containers/juce_LinkedListPointer.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../../juce/modules/juce_core/containers/juce_ListenerList.h">
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
@@ -1312,6 +1404,10 @@
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
+    <Unit filename="../../../juce/modules/juce_core/native/juce_mac_ClangBugWorkaround.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
     <Unit filename="../../../juce/modules/juce_core/native/juce_mac_Files.mm">
       <Option compile="0"/>
       <Option link="0"/>
@@ -1589,10 +1685,6 @@
       <Option link="0"/>
     </Unit>
     <Unit filename="../../../juce/modules/juce_events/broadcasters/juce_ChangeListener.h">
-      <Option compile="0"/>
-      <Option link="0"/>
-    </Unit>
-    <Unit filename="../../../juce/modules/juce_events/broadcasters/juce_ListenerList.h">
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>

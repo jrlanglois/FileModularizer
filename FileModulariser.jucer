@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="MTyUcZ" name="FileModulariser" projectType="guiapp" version="1.0.0"
-              bundleIdentifier="com.jrlanglois.FileModulariser" jucerVersion="4.0.2"
+              bundleIdentifier="com.jrlanglois.FileModulariser" jucerVersion="4.1.0"
               companyName="Jo&#235;l R. Langlois" includeBinaryInAppConfig="1">
   <MAINGROUP id="QhXoUH" name="FileModulariser">
     <GROUP id="{B2777D8A-53F1-E9E9-FBD7-13A303D323D7}" name="Main">
